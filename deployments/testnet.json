@@ -1,0 +1,49 @@
+{
+  "network": "testnet",
+  "deployer": "0xa80e6953e6c4389d0d58461e911418c89568aa3245dbf4b6c32dfa05d09579f1",
+  "deployerAlias": "trumpagotchi-testnet",
+  "publishDigest": "3sjs1nukbnnhCQaPFT2APropnjKfJAXw1KLnMQEUt5sW",
+  "publishCheckpoint": "332736856",
+  "publishedAt": "2026-05-03T22:00:00.000Z",
+  "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5",
+  "upgradeCap": "0xa0857c2ec38b11d893c37a388cc7b0ca8c5fb6b3eaa89ac1cce326bfee96ab63",
+  "publisher": "0xd5c3241adcbf4a6d036007517933344ad15f128e14d670c9265b2bb88e4ac1d8",
+  "adminCap": "0xca1975a538153a111bbfcaf4f8b53a2e417293e9c60f283550c110a1f94e689a",
+  "displayTrumpagotchi": "0x8e931a82c44696ce0590e4ef9591ebd7a35dc56c5188b97f16db1a366fadf6f6",
+  "displayCosmetic": "0x96ead9b7260cc63272d51c611f9eebdcd0aeaad0b0c0395fe6b199cf582decf5",
+  "mintConfig": "0x816d88ae2ff4874757b8adcaa7566999b99b54e804a88920afa88bb2b4d87d29",
+  "mintPricingTestnet": {
+    "note": "TESTNET ONLY — price lowered from canonical 20→0.1 SUI to fit testnet faucet budget. Restore via set_pricing(100000000→20000000000, 0→5000000000, 1→25, 100000000→80000000000) before any meaningful mainnet rehearsal.",
+    "currentBaseMist": 100000000,
+    "currentStepMist": 0,
+    "currentStepCount": 1,
+    "currentCapMist": 100000000,
+    "canonicalBaseMist": 20000000000,
+    "canonicalStepMist": 5000000000,
+    "canonicalStepCount": 25,
+    "canonicalCapMist": 80000000000,
+    "loweredAt": "2026-05-03T22:10:00.000Z",
+    "loweredDigest": "6TZgduXzVDTbUuSxvXC3g951eXChFmpGdPHsYuJnErpJ"
+  },
+  "mintAddresses": {
+    "buyBurn": "0x573ca6f6d54c7dd4ee0aabde736cdec680011829a023995d3fd42e29a032e408",
+    "lp": "0x4e95b4168f2529bd00f3b1b7030ec692c26f5fd05330ac75c4d5d87e5bde7af1",
+    "victoryVault": "0x39ee291682e829771ad0c3ed46ebc69a962b7c2f9e6477409b22616bcf21ac34",
+    "prizePool": "0xaaad14a76c612fc6920607ab669ccbf9c9f174ef96b9555eaee6a87c9b1008eb",
+    "dev": "0xde8295732da5fa041ff244307503c3c696d09ec4f33bd1ad85b36a4cd7f1b048"
+  },
+  "previousDeployments": [
+    {
+      "packageId": "0x1455c55de13a08fe0278ec09dbe188efadbbe404f55eadbb7eac6b2cab57b2c3",
+      "digest": "GpDxyZK51vNxcfX4Bng5xM6yZSftvZ66Z128bHdeuCwU",
+      "supersededAt": "2026-05-03T16:36:43.811Z",
+      "reason": "Added admin_mint public entry for testnet smoke testing"
+    },
+    {
+      "packageId": "0xdd97fc989544dff573ee7b5e1180dd73760bdde697e90fb0790db213e3d0efea",
+      "digest": "5Wmr6am7tdrHuKCGkDRd6rMA6UFDAvEc7hUVqNXsCsj4",
+      "supersededAt": "2026-05-03T22:00:00.000Z",
+      "reason": "Republished from scratch to add trumpagotchi::mint module (init must run on first publish to share MintConfig)"
+    }
+  ]
+}
