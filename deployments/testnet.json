@@ -34,9 +34,9 @@
     "patchCount": 353,
     "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}",
     "manifestPath": "assets/walrus_manifest.testnet.json",
-    "knownGaps": {
-      "missingBackground": "Debate 2 (spec calls for 'Debate x2' in Tier2+; folder has only Debate.png) — one of the 60 spec backgrounds, so we shipped 59",
-      "filenameTypo": "Tier2+/StaryNight.png (likely intended 'StarryNight'); harmless but worth noting"
+    "knownIssues": {
+      "filenameTypoInThisQuilt": "This testnet quilt has identifier 'StaryNight.png' (typo). On-disk renamed to 'StarryNight.png' for future quilts; mainnet pin must use the corrected name. The Move Display URL for that one background must use 'StaryNight.png' for THIS testnet quilt only.",
+      "specClarification": "Sprint 3 spec §Tier2+ said 'Debate x2' which read as two backgrounds; user confirmed there is only one Debate. Total background count is 59, matching the spec's per-row sum (1+18+9+16+9+1+2+1+2)."
     }
   },
   "mintAddresses": {
