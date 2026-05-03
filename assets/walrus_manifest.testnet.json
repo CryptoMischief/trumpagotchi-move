@@ -1,0 +1,2286 @@
+{
+  "network": "testnet",
+  "quiltBlobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
+  "quiltSuiObjectId": "0x83e13567b17d602b367ba25326fa61b18abf9240f22be5a6889ad6fab0fb3e5e",
+  "quiltEndEpoch": 439,
+  "uploadedAt": "2026-05-03T22:55:00.000Z",
+  "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}",
+  "totalPatches": 353,
+  "bodies": [
+    {
+      "identifier": "Tier1-FakeNews.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNAA3AA",
+      "sourceRelPath": "Bodies/Tier1-FakeNews.png",
+      "tier": 1
+    },
+    {
+      "identifier": "Tier2-Low Energy-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXAFeAQ",
+      "sourceRelPath": "Bodies/Tier2-Low Energy-Billionaire.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier2-LowEnergy-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXwFhAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-Golf.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier2-LowEnergy-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYgFlAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-Tracksuit.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier2-LowEnergy-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZgFpAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-VacationMode.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier2-LowEnergy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBagFtAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier2-Lowenergy-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBbgFwAQ",
+      "sourceRelPath": "Bodies/Tier2-Lowenergy-Rally.png",
+      "tier": 2
+    },
+    {
+      "identifier": "Tier3-Patriot-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcQF0AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Billionaire.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier3-Patriot-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdQF4AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Golf.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier3-Patriot-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBeQF8AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Rally.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier3-Patriot-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBfQGAAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Tracksuit.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier3-Patriot-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBgQGEAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-VacationMode.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier3-Patriot.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhQGIAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot.png",
+      "tier": 3
+    },
+    {
+      "identifier": "Tier4-Tremendous-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiQGLAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Billionaire.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjAGPAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-BlueCollar.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkAGUAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Cowboy.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlQGXAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-GarbageMan.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBmAGaAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Golf.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBmwGdAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Rally.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBngGgAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Tracksuit.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBoQGkAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Tuxedo.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBpQGoAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-VacationMode.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier4-Tremendous.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBqQGrAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous.png",
+      "tier": 4
+    },
+    {
+      "identifier": "Tier5-Big League-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBrAGvAQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-GarbageMan.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-Big League-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBsAGzAQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-Tracksuit.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-Big League-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBtAG3AQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-VacationMode.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBuAG8AQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Billionaire.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBvQHBAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-BlueCollar.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBwgHFAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Cowboy.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBxgHJAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Golf.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBygHMAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Rally.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBzQHPAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Tuxedo.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier5-BigLeague.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB0AHUAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague.png",
+      "tier": 5
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB1QHYAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Billionaire.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB2QHcAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-BlueCollar.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB3QHgAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Cowboy.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB4QHkAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-GarbageMan.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB5QHoAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Golf.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB6QHsAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Rally.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB7QHwAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Tracksuit.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB8QHzAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Tuxedo.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB9AH3AQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-VacationMode.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB-AH7AQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal.png",
+      "tier": 6
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB_AH_AQ",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Billionaire.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAAIDAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-BlueCollar.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBAIHAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Cowboy.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCAILAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-GarbageMan.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDAIOAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Golf.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDwISAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Rally.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEwIWAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Tracksuit.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFwIZAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Tuxedo.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGgIdAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-VacationMode.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier7-MajorPlayer.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHgIgAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer.png",
+      "tier": 7
+    },
+    {
+      "identifier": "Tier8-EpicFury-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIQIlAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Astronaut.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJgIpAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Billionaire.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKgItAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-BlueCollar.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLgIxAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-BoxerShorts.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMgI1Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Cowboy.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNgI6Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Eagle.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Garbage Man.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBOwI-Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Garbage Man.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPwJCAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-General.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQwJFAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Golf.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBRgJJAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Rally.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSgJNAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Tracksuit.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTgJSAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Tuxedo.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBUwJWAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-VacationMode.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier8-EpicFury.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBVwJaAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury.png",
+      "tier": 8
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBWwJfAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Astronaut.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYAJiAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Billionaire.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYwJmAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-BlueCollar.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZwJpAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-BoxerShorts.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBagJtAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Cowboy.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBbgJxAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Eagle.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcgJ1Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-GarbageMan.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdgJ5Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-General.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBegJ9Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Golf.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBfgKBAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Rally.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBggKFAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Tracksuit.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhgKIAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Tuxedo.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiQKMAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-VacationMode.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier9-CommanderinChief.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjQKPAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief.png",
+      "tier": 9
+    },
+    {
+      "identifier": "Tier10-MAGA-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBOAA9AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Astronaut.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPgBCAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Billionaire.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQwBIAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-BlueCollar.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSQBNAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-BoxerShorts.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTgBSAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Cowboy.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBUwBXAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Eagle.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBWABcAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-GarbageMan.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXQBhAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-General.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYgBmAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Golf.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZwBrAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Rally.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBbABwAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Tracksuit.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcQB1AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Tuxedo.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdgB6AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-VacationMode.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier10-MAGA.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBewB_AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA.png",
+      "tier": 10
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBgACEAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Astronaut.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhQCIAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Billionaire.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiQCNAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-BlueCollar.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjgCSAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-BoxerShorts.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkwCXAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Cowboy.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBmACcAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Eagle.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBnQCgAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-GarbageMan.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBoQClAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-General.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBpgCqAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Golf.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-MAGA.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBqwCuAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-MAGA.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBrwCyAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Rally.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBswC2AA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Tracksuit.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBtwC6AA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Tuxedo.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBuwC_AA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-VacationMode.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBwADDAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy.png",
+      "tier": 11
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBxADHAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Astronaut.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkByADLAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Billionaire.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-BlueCollar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBzADPAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-BlueCollar.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB0ADTAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-BoxerShorts.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB1ADXAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Cowboy.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB2ADbAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Eagle.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB3ADfAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-GarbageMan.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB4ADjAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-General.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-GoldenEagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB5ADnAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-GoldenEagle.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB6ADrAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Golf.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-MAGAHat.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB7ADvAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-MAGAHat.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Phone.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB8ADzAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Phone.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB9AD3AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Rally.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB-AD7AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Tracksuit.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB_AD_AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Tuxedo.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAAEDAQ",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-VacationMode.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBAEHAQ",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich.png",
+      "tier": 12
+    },
+    {
+      "identifier": "Tier13-POTUS-Astronaut.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCAELAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Astronaut.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Billionaire.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDAEPAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Billionaire.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Blue Collar.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEAETAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Blue Collar.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-BoxerShorts.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFAEXAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-BoxerShorts.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Cowboy.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGAEbAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Cowboy.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Eagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHAEfAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Eagle.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-GarbageMan.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIAEjAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GarbageMan.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-General.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJAEnAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-General.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-GoldSuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKAErAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GoldSuit.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-GoldenEagle.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLAEwAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GoldenEagle.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Golf.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMQEzAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Golf.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-HotPink.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNAE3AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-HotPink.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-MAGA.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBOAE7AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-MAGA.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Phone.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPAE_AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Phone.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Rally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQAFDAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Rally.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Tracksuit.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBRAFHAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Tracksuit.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Tuxedo.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSAFKAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Tuxedo.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-VacationMode.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSwFOAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-VacationMode.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS-Yolked.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTwFUAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Yolked.png",
+      "tier": 13
+    },
+    {
+      "identifier": "Tier13-POTUS.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBVQFbAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS.png",
+      "tier": 13
+    }
+  ],
+  "backgrounds": [
+    {
+      "identifier": "OvalOfficeGold.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIAAhAA",
+      "sourceRelPath": "Backgroundsv2/POTUS/OvalOfficeGold.png",
+      "tierGate": "POTUS"
+    },
+    {
+      "identifier": "OvalOfficeParty.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIQAiAA",
+      "sourceRelPath": "Backgroundsv2/POTUS/OvalOfficeParty.png",
+      "tierGate": "POTUS"
+    },
+    {
+      "identifier": "OvalOfficeUnderwater.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIwAlAA",
+      "sourceRelPath": "Backgroundsv2/POTUS/OvalOfficeUnderwater.png",
+      "tierGate": "POTUS"
+    },
+    {
+      "identifier": "BlackStars.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBgAHAA",
+      "sourceRelPath": "Backgroundsv2/Starter/BlackStars.png",
+      "tierGate": "Starter"
+    },
+    {
+      "identifier": "BlackHole.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBQAGAA",
+      "sourceRelPath": "Backgroundsv2/Tier10+/BlackHole.png",
+      "tierGate": "Tier10+"
+    },
+    {
+      "identifier": "GoldClouds.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDgAPAA",
+      "sourceRelPath": "Backgroundsv2/Tier10+/GoldClouds.png",
+      "tierGate": "Tier10+"
+    },
+    {
+      "identifier": "OvalOfficeStandard.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIgAjAA",
+      "sourceRelPath": "Backgroundsv2/Tier10+/OvalOfficeStandard.png",
+      "tierGate": "Tier10+"
+    },
+    {
+      "identifier": "Ballroom.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBAAFAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Ballroom.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Boardroom.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBwAIAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Boardroom.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "CampaignRally.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCAAJAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/CampaignRally.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Casino.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCQAKAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Casino.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "ClassicStars.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCwAMAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/ClassicStars.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Debate.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDAANAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Debate.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Fireside.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDQAOAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Fireside.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "GolfGreen.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEQASAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/GolfGreen.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "GolfTee.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEgATAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/GolfTee.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Gym.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEwAUAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Gym.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Helipad.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFQAWAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Helipad.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Poolside.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKAApAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Poolside.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "RainbowStars.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLQAuAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/RainbowStars.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "StaryNight.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLwAwAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/StaryNight.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "TanningBooth.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMgAzAA",
+      "sourceRelPath": "Backgroundsv2/Tier2+/TanningBooth.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Twitter.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkQKSAg",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Twitter.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "VegasStrip.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkwKUAg",
+      "sourceRelPath": "Backgroundsv2/Tier2+/VegasStrip.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "Wrestling.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBmAKZAg",
+      "sourceRelPath": "Backgroundsv2/Tier2+/Wrestling.png",
+      "tierGate": "Tier2+"
+    },
+    {
+      "identifier": "GoldTower.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEAARAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/GoldTower.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "Mar-A-Lago.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGQAaAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/Mar-A-Lago.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "Moon.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGgAbAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/Moon.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "Moonbase.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGwAcAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/Moonbase.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "PenthouseInside.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJQAmAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/PenthouseInside.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "PenthouseOutside.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJgAnAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/PenthouseOutside.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "PressRoom.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKQAqAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/PressRoom.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "PurpleNight.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKwAsAA",
+      "sourceRelPath": "Backgroundsv2/Tier4+/PurpleNight.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "TrophyRoom.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjwKQAg",
+      "sourceRelPath": "Backgroundsv2/Tier4+/TrophyRoom.png",
+      "tierGate": "Tier4+"
+    },
+    {
+      "identifier": "AirForce1.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAQACAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/AirForce1.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Alps.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAwAEAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Alps.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Church.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCgALAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Church.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Kitchen.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFwAYAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Kitchen.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Macdonalds.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGAAZAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Macdonalds.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "MtRushmore.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHQAeAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/MtRushmore.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Narnia.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHgAfAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Narnia.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "NewspaperStand.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHwAgAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/NewspaperStand.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "PinkClouds.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJwAoAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/PinkClouds.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "PurpleClouds.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKgArAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/PurpleClouds.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "SkidRow.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLgAvAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/SkidRow.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Storm.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMAAxAA",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Storm.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "TrumpTower.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkAKRAg",
+      "sourceRelPath": "Backgroundsv2/Tier6+/TrumpTower.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "UnderTheSea.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkgKTAg",
+      "sourceRelPath": "Backgroundsv2/Tier6+/UnderTheSea.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Venice.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlAKVAg",
+      "sourceRelPath": "Backgroundsv2/Tier6+/Venice.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "WhitehouseGate.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlgKXAg",
+      "sourceRelPath": "Backgroundsv2/Tier6+/WhitehouseGate.png",
+      "tierGate": "Tier6+"
+    },
+    {
+      "identifier": "Alien.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAgADAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/Alien.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "GoldToilet.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDwAQAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/GoldToilet.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "Heaven.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFAAVAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/Heaven.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "Hell.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFgAXAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/Hell.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "MorningClouds.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHAAdAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/MorningClouds.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "PurpleSmoke.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLAAtAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/PurpleSmoke.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "StripClub.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMQAyAA",
+      "sourceRelPath": "Backgroundsv2/Tier8+/StripClub.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "WhiteHouseGarden.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlQKWAg",
+      "sourceRelPath": "Backgroundsv2/Tier8+/WhiteHouseGarden.png",
+      "tierGate": "Tier8+"
+    },
+    {
+      "identifier": "WildWest.png",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlwKYAg",
+      "sourceRelPath": "Backgroundsv2/Tier8+/WildWest.png",
+      "tierGate": "Tier8+"
+    }
+  ],
+  "bodyJsonSidecars": [
+    {
+      "identifier": "Tier1-FakeNews.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMwA0AA",
+      "sourceRelPath": "Bodies/Tier1-FakeNews.json",
+      "tier": 1,
+      "pairedPng": "Tier1-FakeNews.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNwA4AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Astronaut.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Astronaut.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPQA-AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Billionaire.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Billionaire.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQgBDAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-BlueCollar.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSABJAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-BoxerShorts.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTQBOAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Cowboy.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Cowboy.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBUgBTAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Eagle.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Eagle.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBVwBYAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-GarbageMan.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXABdAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-General.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-General.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYQBiAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Golf.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Golf.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZgBnAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Rally.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Rally.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBawBsAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Tracksuit.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcABxAA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-Tuxedo.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier10-MAGA-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdQB2AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA-VacationMode.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA-VacationMode.png"
+    },
+    {
+      "identifier": "Tier10-MAGA.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBegB7AA",
+      "sourceRelPath": "Bodies/Tier10-MAGA.json",
+      "tier": 10,
+      "pairedPng": "Tier10-MAGA.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBfwCAAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Astronaut.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Astronaut.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhACFAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Billionaire.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Billionaire.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiACJAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-BlueCollar.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjQCOAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-BoxerShorts.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBkgCTAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Cowboy.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Cowboy.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlwCYAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Eagle.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Eagle.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBnACdAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-GarbageMan.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBoAChAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-General.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-General.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBpQCmAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Golf.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Golf.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-MAGA.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBqgCrAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-MAGA.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-MAGA.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBrgCvAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Rally.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Rally.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBsgCzAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Tracksuit.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBtgC3AA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-Tuxedo.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBugC7AA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy-VacationMode.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy-VacationMode.png"
+    },
+    {
+      "identifier": "Tier11-BigStrongBoy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBvwDAAA",
+      "sourceRelPath": "Bodies/Tier11-BigStrongBoy.json",
+      "tier": 11,
+      "pairedPng": "Tier11-BigStrongBoy.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBwwDEAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Astronaut.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Astronaut.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBxwDIAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Billionaire.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Billionaire.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBywDMAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-BlueCollar.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBzwDQAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-BoxerShorts.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB0wDUAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Cowboy.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Cowboy.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB1wDYAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Eagle.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Eagle.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB2wDcAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-GarbageMan.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB3wDgAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-General.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-General.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-GoldenEagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB4wDkAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-GoldenEagle.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-GoldenEagle.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB5wDoAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Golf.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Golf.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-MAGAHat.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB6wDsAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-MAGAHat.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-MAGAHat.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Phone.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB7wDwAA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Phone.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Phone.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB8wD0AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Rally.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Rally.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB9wD4AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Tracksuit.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB-wD8AA",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-Tuxedo.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB_wAAAQ",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich-VacationMode.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich-VacationMode.png"
+    },
+    {
+      "identifier": "Tier12-VeryVeryRich.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAwEEAQ",
+      "sourceRelPath": "Bodies/Tier12-VeryVeryRich.json",
+      "tier": 12,
+      "pairedPng": "Tier12-VeryVeryRich.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBwEIAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Astronaut.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Astronaut.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCwEMAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Billionaire.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Billionaire.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Blue Collar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDwEQAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Blue Collar.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Blue Collar.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEwEUAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-BoxerShorts.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFwEYAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Cowboy.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Cowboy.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGwEcAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Eagle.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Eagle.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHwEgAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GarbageMan.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIwEkAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-General.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-General.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-GoldSuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJwEoAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GoldSuit.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-GoldSuit.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-GoldenEagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKwEsAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-GoldenEagle.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-GoldenEagle.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMAExAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Golf.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Golf.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-HotPink.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMwE0AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-HotPink.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-HotPink.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-MAGA.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNwE4AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-MAGA.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-MAGA.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Phone.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBOwE8AQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Phone.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Phone.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPwFAAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Rally.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Rally.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQwFEAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Tracksuit.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBRwFIAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Tuxedo.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSgFLAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-VacationMode.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-VacationMode.png"
+    },
+    {
+      "identifier": "Tier13-POTUS-Yolked.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTgFPAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS-Yolked.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS-Yolked.png"
+    },
+    {
+      "identifier": "Tier13-POTUS.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBVAFVAQ",
+      "sourceRelPath": "Bodies/Tier13-POTUS.json",
+      "tier": 13,
+      "pairedPng": "Tier13-POTUS.png"
+    },
+    {
+      "identifier": "Tier2-Low Energy-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBWwFcAQ",
+      "sourceRelPath": "Bodies/Tier2-Low Energy-Billionaire.json",
+      "tier": 2,
+      "pairedPng": "Tier2-Low Energy-Billionaire.png"
+    },
+    {
+      "identifier": "Tier2-LowEnergy-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXgFfAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-Golf.json",
+      "tier": 2,
+      "pairedPng": "Tier2-LowEnergy-Golf.png"
+    },
+    {
+      "identifier": "Tier2-LowEnergy-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYQFiAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-Tracksuit.json",
+      "tier": 2,
+      "pairedPng": "Tier2-LowEnergy-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier2-LowEnergy-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZQFmAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy-VacationMode.json",
+      "tier": 2,
+      "pairedPng": "Tier2-LowEnergy-VacationMode.png"
+    },
+    {
+      "identifier": "Tier2-LowEnergy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBaQFqAQ",
+      "sourceRelPath": "Bodies/Tier2-LowEnergy.json",
+      "tier": 2,
+      "pairedPng": "Tier2-LowEnergy.png"
+    },
+    {
+      "identifier": "Tier2-Lowenergy-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBbQFuAQ",
+      "sourceRelPath": "Bodies/Tier2-Lowenergy-Rally.json",
+      "tier": 2,
+      "pairedPng": "Tier2-Lowenergy-Rally.png"
+    },
+    {
+      "identifier": "Tier3-Patriot-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcAFxAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Billionaire.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot-Billionaire.png"
+    },
+    {
+      "identifier": "Tier3-Patriot-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdAF1AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Golf.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot-Golf.png"
+    },
+    {
+      "identifier": "Tier3-Patriot-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBeAF5AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Rally.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot-Rally.png"
+    },
+    {
+      "identifier": "Tier3-Patriot-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBfAF9AQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-Tracksuit.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier3-Patriot-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBgAGBAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot-VacationMode.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot-VacationMode.png"
+    },
+    {
+      "identifier": "Tier3-Patriot.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhAGFAQ",
+      "sourceRelPath": "Bodies/Tier3-Patriot.json",
+      "tier": 3,
+      "pairedPng": "Tier3-Patriot.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiAGJAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Billionaire.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Billionaire.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiwGMAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-BlueCollar.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjwGQAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Cowboy.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Cowboy.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlAGVAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-GarbageMan.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBlwGYAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Golf.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Golf.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBmgGbAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Rally.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Rally.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBnQGeAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Tracksuit.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBoAGhAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-Tuxedo.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBpAGlAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous-VacationMode.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous-VacationMode.png"
+    },
+    {
+      "identifier": "Tier4-Tremendous.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBqAGpAQ",
+      "sourceRelPath": "Bodies/Tier4-Tremendous.json",
+      "tier": 4,
+      "pairedPng": "Tier4-Tremendous.png"
+    },
+    {
+      "identifier": "Tier5-Big League-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBqwGsAQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-GarbageMan.json",
+      "tier": 5,
+      "pairedPng": "Tier5-Big League-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier5-Big League-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBrwGwAQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-Tracksuit.json",
+      "tier": 5,
+      "pairedPng": "Tier5-Big League-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier5-Big League-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBswG0AQ",
+      "sourceRelPath": "Bodies/Tier5-Big League-VacationMode.json",
+      "tier": 5,
+      "pairedPng": "Tier5-Big League-VacationMode.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBtwG4AQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Billionaire.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-Billionaire.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBvAG9AQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-BlueCollar.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBwQHCAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Cowboy.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-Cowboy.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBxQHGAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Golf.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-Golf.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkByQHKAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Rally.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-Rally.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBzAHNAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague-Tuxedo.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier5-BigLeague.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBzwHQAQ",
+      "sourceRelPath": "Bodies/Tier5-BigLeague.json",
+      "tier": 5,
+      "pairedPng": "Tier5-BigLeague.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB1AHVAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Billionaire.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Billionaire.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB2AHZAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-BlueCollar.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB3AHdAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Cowboy.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Cowboy.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB4AHhAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-GarbageMan.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB5AHlAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Golf.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Golf.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB6AHpAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Rally.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Rally.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB7AHtAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Tracksuit.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB8AHxAQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-Tuxedo.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB8wH0AQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal-VacationMode.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal-VacationMode.png"
+    },
+    {
+      "identifier": "Tier6-ArtoftheDeal.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB9wH4AQ",
+      "sourceRelPath": "Bodies/Tier6-ArtoftheDeal.json",
+      "tier": 6,
+      "pairedPng": "Tier6-ArtoftheDeal.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB-wH8AQ",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Billionaire.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Billionaire.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkB_wEAAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-BlueCollar.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBAwIEAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Cowboy.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Cowboy.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBBwIIAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-GarbageMan.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBCwIMAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Golf.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Golf.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBDgIPAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Rally.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Rally.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBEgITAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Tracksuit.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBFgIXAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-Tuxedo.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBGQIaAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer-VacationMode.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer-VacationMode.png"
+    },
+    {
+      "identifier": "Tier7-MajorPlayer.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBHQIeAg",
+      "sourceRelPath": "Bodies/Tier7-MajorPlayer.json",
+      "tier": 7,
+      "pairedPng": "Tier7-MajorPlayer.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBIAIhAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Astronaut.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Astronaut.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBJQImAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Billionaire.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Billionaire.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBKQIqAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-BlueCollar.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBLQIuAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-BoxerShorts.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBMQIyAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Cowboy.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Cowboy.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBNQI2Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Eagle.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Eagle.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Garbage Man.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBOgI7Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Garbage Man.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Garbage Man.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBPgI_Ag",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-General.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-General.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBQgJDAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Golf.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Golf.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBRQJGAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Rally.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Rally.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBSQJKAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Tracksuit.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBTQJOAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-Tuxedo.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBUgJTAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury-VacationMode.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury-VacationMode.png"
+    },
+    {
+      "identifier": "Tier8-EpicFury.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBVgJXAg",
+      "sourceRelPath": "Bodies/Tier8-EpicFury.json",
+      "tier": 8,
+      "pairedPng": "Tier8-EpicFury.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Astronaut.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBWgJbAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Astronaut.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Astronaut.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Billionaire.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBXwJgAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Billionaire.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Billionaire.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-BlueCollar.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBYgJjAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-BlueCollar.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-BlueCollar.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-BoxerShorts.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBZgJnAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-BoxerShorts.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-BoxerShorts.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Cowboy.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBaQJqAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Cowboy.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Cowboy.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Eagle.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBbQJuAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Eagle.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Eagle.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-GarbageMan.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBcQJyAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-GarbageMan.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-GarbageMan.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-General.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBdQJ2Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-General.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-General.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Golf.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBeQJ6Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Golf.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Golf.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Rally.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBfQJ-Ag",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Rally.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Rally.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Tracksuit.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBgQKCAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Tracksuit.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Tracksuit.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-Tuxedo.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBhQKGAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-Tuxedo.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-Tuxedo.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief-VacationMode.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBiAKJAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief-VacationMode.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief-VacationMode.png"
+    },
+    {
+      "identifier": "Tier9-CommanderinChief.json",
+      "quiltPatchId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWkBjAKNAg",
+      "sourceRelPath": "Bodies/Tier9-CommanderinChief.json",
+      "tier": 9,
+      "pairedPng": "Tier9-CommanderinChief.png"
+    }
+  ],
+  "counts": {
+    "bodies": 147,
+    "backgrounds": 59,
+    "bodyJsonSidecars": 147,
+    "totalPatches": 353
+  }
+}

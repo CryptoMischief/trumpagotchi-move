@@ -25,6 +25,20 @@
     "loweredAt": "2026-05-03T22:10:00.000Z",
     "loweredDigest": "6TZgduXzVDTbUuSxvXC3g951eXChFmpGdPHsYuJnErpJ"
   },
+  "walrus": {
+    "network": "testnet",
+    "quiltBlobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
+    "quiltSuiObjectId": "0x83e13567b17d602b367ba25326fa61b18abf9240f22be5a6889ad6fab0fb3e5e",
+    "endEpoch": 439,
+    "uploadedAt": "2026-05-03T22:55:00.000Z",
+    "patchCount": 353,
+    "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}",
+    "manifestPath": "assets/walrus_manifest.testnet.json",
+    "knownGaps": {
+      "missingBackground": "Debate 2 (spec calls for 'Debate x2' in Tier2+; folder has only Debate.png) — one of the 60 spec backgrounds, so we shipped 59",
+      "filenameTypo": "Tier2+/StaryNight.png (likely intended 'StarryNight'); harmless but worth noting"
+    }
+  },
   "mintAddresses": {
     "buyBurn": "0x573ca6f6d54c7dd4ee0aabde736cdec680011829a023995d3fd42e29a032e408",
     "lp": "0x4e95b4168f2529bd00f3b1b7030ec692c26f5fd05330ac75c4d5d87e5bde7af1",
