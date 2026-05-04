@@ -2,16 +2,21 @@
   "network": "testnet",
   "deployer": "0xa80e6953e6c4389d0d58461e911418c89568aa3245dbf4b6c32dfa05d09579f1",
   "deployerAlias": "trumpagotchi-testnet",
-  "publishDigest": "3sjs1nukbnnhCQaPFT2APropnjKfJAXw1KLnMQEUt5sW",
-  "publishCheckpoint": "332736856",
-  "publishedAt": "2026-05-03T22:00:00.000Z",
-  "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5",
-  "upgradeCap": "0xa0857c2ec38b11d893c37a388cc7b0ca8c5fb6b3eaa89ac1cce326bfee96ab63",
-  "publisher": "0xd5c3241adcbf4a6d036007517933344ad15f128e14d670c9265b2bb88e4ac1d8",
-  "adminCap": "0xca1975a538153a111bbfcaf4f8b53a2e417293e9c60f283550c110a1f94e689a",
-  "displayTrumpagotchi": "0x8e931a82c44696ce0590e4ef9591ebd7a35dc56c5188b97f16db1a366fadf6f6",
-  "displayCosmetic": "0x96ead9b7260cc63272d51c611f9eebdcd0aeaad0b0c0395fe6b199cf582decf5",
-  "mintConfig": "0x816d88ae2ff4874757b8adcaa7566999b99b54e804a88920afa88bb2b4d87d29",
+  "publishDigest": "EpHyq96SsMjkhgHn88QLxnefXP8C19NNYTaxv1JzLyj2",
+  "publishCheckpoint": "332911420",
+  "publishedAt": "2026-05-04T08:30:00.000Z",
+  "packageId": "0xfd3d2441b63da7866c1f2169eb83b2527775af2616bdac1fab6b5c0840987df5",
+  "upgradeCap": "0xb09221473f871696faa1aac2a70c45f0aaf83934d36fb3498f9a2115fe6e10ea",
+  "publisher": "0xd9e238ddcde2addf1e179238e87b39f9fc206cbfc194b71d61e37c62edcc43c5",
+  "adminCap": "0x766d96d72c9bc1c2ce8f7d3cf445847c44b3f1eb1099493434479f02a7092628",
+  "displayTrumpagotchi": "0x7c5cc4b55fbd52f29878d57e428000f3fc2b3a997fc9ede8811b869deefd2869",
+  "displayCosmetic": "0x73999dbb201d4c9327cfb41d189d89a9bb514af7e4eccb4e5062470822066e92",
+  "mintConfig": "0xad36ccbd96abd44698bba545bc80c8d493b81e6cc1700914ee47403775654504",
+  "cosmeticTransferPolicy": "0x9450c98b956e0a374323e5c005aa4aae0020e0cdb5b3920afece1251d9b107e6",
+  "cosmeticTransferPolicyCap": "0xe42c585e0886f5f48c9b241256f70e954ef859e1e444f36d104da0086e1ef105",
+  "kioskRulesPackageTestnet": "0xe308bb3ed5367cd11a9c7f7e7aa95b2f3c9a8f10fa1d2b3cff38240f7898555d",
+  "cosmeticRoyaltyBps": 250,
+  "cosmeticRoyaltyBeneficiary": "0xaaad14a76c612fc6920607ab669ccbf9c9f174ef96b9555eaee6a87c9b1008eb",
   "mintPricingTestnet": {
     "note": "TESTNET ONLY — price lowered from canonical 20→0.1 SUI to fit testnet faucet budget. Restore via set_pricing(100000000→20000000000, 0→5000000000, 1→25, 100000000→80000000000) before any meaningful mainnet rehearsal.",
     "currentBaseMist": 100000000,
@@ -22,8 +27,8 @@
     "canonicalStepMist": 5000000000,
     "canonicalStepCount": 25,
     "canonicalCapMist": 80000000000,
-    "loweredAt": "2026-05-03T22:10:00.000Z",
-    "loweredDigest": "6TZgduXzVDTbUuSxvXC3g951eXChFmpGdPHsYuJnErpJ"
+    "loweredAt": "2026-05-04T08:32:00.000Z",
+    "loweredDigest": "CHicp6djobo9yesLxzeFGtEHhRhVJYW1s2wRmzkC1zgn"
   },
   "walrus": {
     "network": "testnet",
@@ -58,6 +63,12 @@
       "digest": "5Wmr6am7tdrHuKCGkDRd6rMA6UFDAvEc7hUVqNXsCsj4",
       "supersededAt": "2026-05-03T22:00:00.000Z",
       "reason": "Republished from scratch to add trumpagotchi::mint module (init must run on first publish to share MintConfig)"
+    },
+    {
+      "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5",
+      "digest": "3sjs1nukbnnhCQaPFT2APropnjKfJAXw1KLnMQEUt5sW",
+      "supersededAt": "2026-05-04T08:30:00.000Z",
+      "reason": "Republished to add Walrus Display image_url templates, body_identifier on Trumpagotchi, walrus_identifier on Cosmetic, and create_cosmetic_transfer_policy with 2.5% kiosk royalty rule (Tradeport-tradeable)"
     }
   ]
 }

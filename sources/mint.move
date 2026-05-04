@@ -6,6 +6,12 @@ use sui::event;
 use sui::sui::SUI;
 use trumpagotchi::trumpagotchi::{Self, AdminCap};
 
+// Tier 1 body sprite filename in the Walrus quilt — every fresh mint starts
+// at Tier 1 (Fake News) per spec, so this is the body identifier we always
+// stamp into the new NFT. Admin can mutate later via set_body_identifier
+// when the off-chain tier engine advances the wallet.
+const TIER1_BODY_IDENTIFIER: vector<u8> = b"Tier1-FakeNews.png";
+
 // ── Revenue split (basis points, sum to 10_000) ───────────────────────────
 // With referrer:    25 + 20 + 30 + 10 +  2.5 + 12.5 = 100
 // Without referrer: 25 + 20 + 30 + 10 +  0   + 15.0 = 100
@@ -179,7 +185,13 @@ public fun mint(
     let dev_amt = coin::value(&payment);
     transfer::public_transfer(payment, cfg.dev);
 
-    let nft_id = trumpagotchi::mint_to(ctx.sender(), referrer, clock, ctx);
+    let nft_id = trumpagotchi::mint_to(
+        ctx.sender(),
+        referrer,
+        TIER1_BODY_IDENTIFIER.to_string(),
+        clock,
+        ctx,
+    );
 
     event::emit(MintPaid {
         nft_id,

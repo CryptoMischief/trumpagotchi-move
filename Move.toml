@@ -4,7 +4,10 @@ edition = "2024.beta"
 version = "0.1.0"
 
 [dependencies]
-Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet" }
+Sui = { git = "https://github.com/MystenLabs/sui.git", subdir = "crates/sui-framework/packages/sui-framework", rev = "framework/testnet", override = true }
+# Standard kiosk rules from MystenLabs/apps — provides royalty_rule, kiosk_lock_rule, etc.
+# Pinned to main; lock to a commit before mainnet.
+kiosk = { git = "https://github.com/MystenLabs/apps.git", subdir = "kiosk", rev = "main" }
 
 [addresses]
 trumpagotchi = "0x0"

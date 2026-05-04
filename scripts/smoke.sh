@@ -76,25 +76,29 @@ read_object_json() {
 }
 
 # ── Step 1: mint a Trumpagotchi to self ───────────────────────────────────
+# Body identifier matches the live Walrus quilt patch — Display image_url
+# resolves to the actual Tier-1 sprite via the aggregator.
 echo "[1/8] admin_mint -> trumpagotchi-testnet"
 NFT_ID=$(call_and_grab admin_mint "::trumpagotchi::Trumpagotchi" \
-  "$ADMIN_CAP" "$DEPLOYER" "$CLOCK")
+  "$ADMIN_CAP" "$DEPLOYER" "Tier1-FakeNews.png" "$CLOCK")
 echo "      nft: $NFT_ID"
 
 # ── Step 2-4: issue one cosmetic of each kind ─────────────────────────────
+# walrus_identifier values are real quilt patch identifiers so the Display
+# image_url resolves to a real sprite asset for each cosmetic.
 echo "[2/8] admin_issue_cosmetic outfit (kind=1, tier_gate=1)"
 OUTFIT_ID=$(call_and_grab admin_issue_cosmetic "::trumpagotchi::Cosmetic" \
-  "$ADMIN_CAP" 1 "tier04_tremendous" 1 "$DEPLOYER")
+  "$ADMIN_CAP" 1 "tier04_tremendous" 1 "Tier4-Tremendous-Tuxedo.png" "$DEPLOYER")
 echo "      outfit: $OUTFIT_ID"
 
 echo "[3/8] admin_issue_cosmetic background (kind=2, tier_gate=1)"
 BG_ID=$(call_and_grab admin_issue_cosmetic "::trumpagotchi::Cosmetic" \
-  "$ADMIN_CAP" 2 "ballroom" 1 "$DEPLOYER")
+  "$ADMIN_CAP" 2 "ballroom" 1 "Ballroom.png" "$DEPLOYER")
 echo "      background: $BG_ID"
 
 echo "[4/8] admin_issue_cosmetic shell (kind=3, tier_gate=1)"
 SHELL_ID=$(call_and_grab admin_issue_cosmetic "::trumpagotchi::Cosmetic" \
-  "$ADMIN_CAP" 3 "classic_red" 1 "$DEPLOYER")
+  "$ADMIN_CAP" 3 "classic_red" 1 "Tier1-FakeNews.png" "$DEPLOYER")
 echo "      shell: $SHELL_ID"
 
 # ── Step 5: equip all three ───────────────────────────────────────────────
@@ -247,6 +251,29 @@ assert_delta referrer "$RF_BEFORE" "$RF_AFTER" "$EXP_RF"
 assert_delta dev      "$DV_BEFORE" "$DV_AFTER" "$EXP_DV"
 
 echo
+echo "[Walrus Display] verify image_url templates resolve via aggregator"
+QUILT_ID=$(jq -r .walrus.quiltBlobId "$DEP")
+AGG=https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/$QUILT_ID
+
+assert_http_200() {
+  local label=$1 url=$2
+  # Walrus aggregator occasionally returns 000 on the first request through
+  # cloudflare; --retry-all-errors covers it.
+  local code=$(curl -s -o /dev/null -w "%{http_code}" \
+    --retry 3 --retry-all-errors --max-time 30 "$url")
+  if [[ "$code" != "200" ]]; then
+    echo "ASSERT FAILED ($label): expected HTTP 200, got $code from $url" >&2
+    exit 1
+  fi
+  echo "      ✓ $label -> 200"
+}
+
+assert_http_200 "Tier1-FakeNews body sprite" "$AGG/Tier1-FakeNews.png"
+assert_http_200 "Tier1-FakeNews body JSON sidecar" "$AGG/Tier1-FakeNews.json"
+assert_http_200 "Ballroom background"             "$AGG/Ballroom.png"
+assert_http_200 "Tier4-Tremendous-Tuxedo outfit"  "$AGG/Tier4-Tremendous-Tuxedo.png"
+
+echo
 echo "SMOKE TEST PASSED"
 echo "  admin-mint nft:     $NFT_ID"
 echo "  outfit:             $OUTFIT_ID"
@@ -254,3 +281,5 @@ echo "  background:         $BG_ID"
 echo "  shell:              $SHELL_ID"
 echo "  public-mint nft:    $NEW_NFT"
 echo "  payment digest:     $(echo "$MINT_OUT" | jq -r .digest)"
+echo "  package:            $PKG"
+echo "  cosmetic policy:    $(jq -r .cosmeticTransferPolicy "$DEP")"

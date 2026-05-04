@@ -3,7 +3,9 @@ module trumpagotchi::trumpagotchi_tests;
 
 use std::string;
 use sui::clock;
+use sui::package::Publisher;
 use sui::test_scenario as ts;
+use sui::transfer_policy::{TransferPolicy, TransferPolicyCap};
 use trumpagotchi::trumpagotchi::{Self, Trumpagotchi, Cosmetic, AdminCap};
 
 const ADMIN: address = @0xA;
@@ -20,7 +22,13 @@ fun test_mint_emits_and_lands_on_recipient() {
     clk.set_for_testing(1_000_000);
 
     sc.next_tx(ADMIN);
-    let _id = trumpagotchi::mint_to(ALICE, option::none(), &clk, sc.ctx());
+    let _id = trumpagotchi::mint_to(
+        ALICE,
+        option::none(),
+        string::utf8(b"Tier1-FakeNews.png"),
+        &clk,
+        sc.ctx(),
+    );
 
     sc.next_tx(ALICE);
     let nft = sc.take_from_sender<Trumpagotchi>();
@@ -28,6 +36,7 @@ fun test_mint_emits_and_lands_on_recipient() {
     assert!(option::is_none(&trumpagotchi::equipped_outfit(&nft)), 1);
     assert!(option::is_none(&trumpagotchi::equipped_background(&nft)), 2);
     assert!(option::is_none(&trumpagotchi::equipped_shell(&nft)), 3);
+    assert!(trumpagotchi::body_identifier(&nft) == string::utf8(b"Tier1-FakeNews.png"), 4);
     sc.return_to_sender(nft);
 
     clock::destroy_for_testing(clk);
@@ -44,7 +53,7 @@ fun test_equip_unequip_outfit_round_trip() {
     clk.set_for_testing(1_000_000);
 
     sc.next_tx(ADMIN);
-    trumpagotchi::mint_to(ALICE, option::none(), &clk, sc.ctx());
+    trumpagotchi::mint_to(ALICE, option::none(), string::utf8(b"Tier1-FakeNews.png"), &clk, sc.ctx());
 
     sc.next_tx(ADMIN);
     let admin = sc.take_from_sender<AdminCap>();
@@ -53,6 +62,7 @@ fun test_equip_unequip_outfit_round_trip() {
         trumpagotchi::kind_outfit(),
         string::utf8(b"tier04_tremendous"),
         4,
+        string::utf8(b"Tier4-Tremendous-Tuxedo.png"),
         ALICE,
         sc.ctx(),
     );
@@ -61,6 +71,11 @@ fun test_equip_unequip_outfit_round_trip() {
     sc.next_tx(ALICE);
     let mut nft = sc.take_from_sender<Trumpagotchi>();
     let cosmetic = sc.take_from_sender<Cosmetic>();
+    assert!(
+        trumpagotchi::cosmetic_walrus_identifier(&cosmetic)
+            == string::utf8(b"Tier4-Tremendous-Tuxedo.png"),
+        99,
+    );
 
     trumpagotchi::equip_outfit(&mut nft, cosmetic, 4, &clk, sc.ctx());
     assert!(option::is_some(&trumpagotchi::equipped_outfit(&nft)), 0);
@@ -95,7 +110,7 @@ fun test_equip_aborts_when_tier_below_gate() {
     clk.set_for_testing(1_000_000);
 
     sc.next_tx(ADMIN);
-    trumpagotchi::mint_to(ALICE, option::none(), &clk, sc.ctx());
+    trumpagotchi::mint_to(ALICE, option::none(), string::utf8(b"Tier1-FakeNews.png"), &clk, sc.ctx());
 
     sc.next_tx(ADMIN);
     let admin = sc.take_from_sender<AdminCap>();
@@ -104,6 +119,7 @@ fun test_equip_aborts_when_tier_below_gate() {
         trumpagotchi::kind_shell(),
         string::utf8(b"potus_gold"),
         13,
+        string::utf8(b"Tier13-POTUS-Yolked.png"),
         ALICE,
         sc.ctx(),
     );
@@ -130,7 +146,7 @@ fun test_equip_aborts_when_kind_mismatch() {
     clk.set_for_testing(1_000_000);
 
     sc.next_tx(ADMIN);
-    trumpagotchi::mint_to(ALICE, option::none(), &clk, sc.ctx());
+    trumpagotchi::mint_to(ALICE, option::none(), string::utf8(b"Tier1-FakeNews.png"), &clk, sc.ctx());
 
     sc.next_tx(ADMIN);
     let admin = sc.take_from_sender<AdminCap>();
@@ -139,6 +155,7 @@ fun test_equip_aborts_when_kind_mismatch() {
         trumpagotchi::kind_background(),
         string::utf8(b"ballroom"),
         2,
+        string::utf8(b"Ballroom.png"),
         ALICE,
         sc.ctx(),
     );
@@ -165,7 +182,7 @@ fun test_equip_aborts_when_caller_not_owner() {
     clk.set_for_testing(1_000_000);
 
     sc.next_tx(ADMIN);
-    trumpagotchi::mint_to(ALICE, option::none(), &clk, sc.ctx());
+    trumpagotchi::mint_to(ALICE, option::none(), string::utf8(b"Tier1-FakeNews.png"), &clk, sc.ctx());
 
     sc.next_tx(ADMIN);
     let admin = sc.take_from_sender<AdminCap>();
@@ -174,6 +191,7 @@ fun test_equip_aborts_when_caller_not_owner() {
         trumpagotchi::kind_outfit(),
         string::utf8(b"tier04_tremendous"),
         1,
+        string::utf8(b"Tier4-Tremendous-Tuxedo.png"),
         BOB,
         sc.ctx(),
     );
@@ -194,5 +212,31 @@ fun test_equip_aborts_when_caller_not_owner() {
     // a path that consumes `nft`.
     trumpagotchi::destroy_nft_for_testing(nft);
     clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+#[test]
+fun test_create_cosmetic_transfer_policy() {
+    let mut sc = ts::begin(ADMIN);
+    trumpagotchi::init_for_testing(sc.ctx());
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let publisher = sc.take_from_sender<Publisher>();
+    trumpagotchi::create_cosmetic_transfer_policy(&admin, &publisher, sc.ctx());
+    sc.return_to_sender(admin);
+    sc.return_to_sender(publisher);
+
+    // Policy is shared, cap is owned by ADMIN.
+    sc.next_tx(ADMIN);
+    let policy = sc.take_shared<TransferPolicy<Cosmetic>>();
+    let cap = sc.take_from_sender<TransferPolicyCap<Cosmetic>>();
+    // Just confirm both exist + we got a TransferPolicyCap matching the policy.
+    // The royalty rule is attached as a dynamic field on the policy; the
+    // standard kiosk royalty_rule has no public reader on testnet builds, so
+    // we trust the bps constant we passed (250) and verify behavior via the
+    // smoke script's actual purchase flow.
+    ts::return_shared(policy);
+    sc.return_to_sender(cap);
     sc.end();
 }
