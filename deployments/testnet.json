@@ -56,7 +56,16 @@
       ],
       "displayFlippedAt": "2026-05-05T09:42:00.000Z (display::edit + update_version, no Move republish)"
     },
-    "stripQuiltStillUsedFor": "frame-by-frame access from the dapp browser compositor; obsoleted for marketplace previews"
+    "stripQuiltStillUsedFor": "frame-by-frame access from the dapp browser compositor; obsoleted for marketplace previews",
+    "paperDollQuilt": {
+      "blobId": "qTpv-JbQi39xsODi6b5ZUbJFgw6MG1VCZ7Iq6QhzF4s",
+      "endEpoch": 442,
+      "uploadedAt": "2026-05-06T06:45:00.000Z",
+      "patchCount": 19,
+      "purpose": "Standalone paper-doll PNGs (256x256 RGB, ~80KB each) — one per cosmetic outfit including SUITRUMP_SUIT base. Source = ~/Desktop/suitrump/trumpagotchi/ClothingNFTs/. Used as Cosmetic.walrus_identifier_standalone for shop cards and marketplace previews. v8 §12 inventory.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/qTpv-JbQi39xsODi6b5ZUbJFgw6MG1VCZ7Iq6QhzF4s/{NAME}.png",
+      "identifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"]
+    }
   },
   "mintAddresses": {
     "buyBurn": "0x573ca6f6d54c7dd4ee0aabde736cdec680011829a023995d3fd42e29a032e408",
