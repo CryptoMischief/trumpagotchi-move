@@ -6,7 +6,7 @@ use sui::coin;
 use sui::sui::SUI;
 use sui::test_scenario as ts;
 use trumpagotchi::mint::{Self, MintConfig};
-use trumpagotchi::trumpagotchi::{Self, Trumpagotchi, AdminCap};
+use trumpagotchi::trumpagotchi::{Self, Trumpagotchi, AdminCap, MintedRegistry};
 
 const ADMIN: address = @0xA;
 const ALICE: address = @0xA11CE;
@@ -77,7 +77,9 @@ fun test_mint_with_referrer_splits_correctly() {
     sc.next_tx(ALICE);
     let mut cfg = sc.take_shared<MintConfig>();
     let pay = coin::mint_for_testing<SUI>(PRICE_T1, sc.ctx());
-    mint::mint(&mut cfg, pay, option::some(REF), &clk, sc.ctx());
+    let mut reg = sc.take_shared<MintedRegistry>();
+    mint::mint(&mut cfg, &mut reg, pay, option::some(REF), &clk, sc.ctx());
+    ts::return_shared(reg);
     ts::return_shared(cfg);
 
     // Verify all splits landed correctly. Read all 6 balances FIRST, then
@@ -123,7 +125,9 @@ fun test_mint_without_referrer_folds_to_dev() {
     sc.next_tx(ALICE);
     let mut cfg = sc.take_shared<MintConfig>();
     let pay = coin::mint_for_testing<SUI>(PRICE_T1, sc.ctx());
-    mint::mint(&mut cfg, pay, option::none(), &clk, sc.ctx());
+    let mut reg = sc.take_shared<MintedRegistry>();
+    mint::mint(&mut cfg, &mut reg, pay, option::none(), &clk, sc.ctx());
+    ts::return_shared(reg);
     ts::return_shared(cfg);
 
     sc.next_tx(ADMIN);
@@ -152,7 +156,9 @@ fun test_mint_aborts_when_amount_wrong() {
     sc.next_tx(ALICE);
     let mut cfg = sc.take_shared<MintConfig>();
     let pay = coin::mint_for_testing<SUI>(PRICE_T1 - 1, sc.ctx()); // off by 1 mist
-    mint::mint(&mut cfg, pay, option::none(), &clk, sc.ctx());
+    let mut reg = sc.take_shared<MintedRegistry>();
+    mint::mint(&mut cfg, &mut reg, pay, option::none(), &clk, sc.ctx());
+    ts::return_shared(reg);
     ts::return_shared(cfg);
 
     clock::destroy_for_testing(clk);
@@ -170,7 +176,9 @@ fun test_mint_aborts_on_self_referral() {
     sc.next_tx(ALICE);
     let mut cfg = sc.take_shared<MintConfig>();
     let pay = coin::mint_for_testing<SUI>(PRICE_T1, sc.ctx());
-    mint::mint(&mut cfg, pay, option::some(ALICE), &clk, sc.ctx());
+    let mut reg = sc.take_shared<MintedRegistry>();
+    mint::mint(&mut cfg, &mut reg, pay, option::some(ALICE), &clk, sc.ctx());
+    ts::return_shared(reg);
     ts::return_shared(cfg);
 
     clock::destroy_for_testing(clk);
@@ -195,7 +203,9 @@ fun test_mint_aborts_when_paused() {
     sc.next_tx(BOB);
     let mut cfg = sc.take_shared<MintConfig>();
     let pay = coin::mint_for_testing<SUI>(PRICE_T1, sc.ctx());
-    mint::mint(&mut cfg, pay, option::none(), &clk, sc.ctx());
+    let mut reg = sc.take_shared<MintedRegistry>();
+    mint::mint(&mut cfg, &mut reg, pay, option::none(), &clk, sc.ctx());
+    ts::return_shared(reg);
     ts::return_shared(cfg);
 
     clock::destroy_for_testing(clk);
@@ -234,6 +244,18 @@ fun test_price_increments_on_chain() {
     let mut clk = clock::create_for_testing(sc.ctx());
     clk.set_for_testing(1_000_000);
 
+    // Mark ALICE as exempt so she can mint repeatedly in this loop —
+    // the 1-per-wallet rule otherwise blocks mint #2 onward for any
+    // non-exempt address. (cryptomischief.sui is pre-exempted by init.)
+    sc.next_tx(ADMIN);
+    {
+        let admin = sc.take_from_sender<AdminCap>();
+        let mut reg = sc.take_shared<MintedRegistry>();
+        trumpagotchi::add_exempt(&admin, &mut reg, ALICE);
+        ts::return_shared(reg);
+        sc.return_to_sender(admin);
+    };
+
     // Mints 1..25 should all cost 20 SUI; mint 26 should cost 25 SUI.
     let mut i = 0u64;
     while (i < 26) {
@@ -242,7 +264,9 @@ fun test_price_increments_on_chain() {
         let expected = if (i < 25) 20 * SUI_1 else 25 * SUI_1;
         assert!(mint::current_price_mist(&cfg) == expected, 100 + i);
         let pay = coin::mint_for_testing<SUI>(expected, sc.ctx());
-        mint::mint(&mut cfg, pay, option::none(), &clk, sc.ctx());
+        let mut reg = sc.take_shared<MintedRegistry>();
+        mint::mint(&mut cfg, &mut reg, pay, option::none(), &clk, sc.ctx());
+        ts::return_shared(reg);
         ts::return_shared(cfg);
         i = i + 1;
     };

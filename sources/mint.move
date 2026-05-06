@@ -4,13 +4,13 @@ use sui::clock::Clock;
 use sui::coin::{Self, Coin};
 use sui::event;
 use sui::sui::SUI;
-use trumpagotchi::trumpagotchi::{Self, AdminCap};
+use trumpagotchi::trumpagotchi::{Self, AdminCap, MintedRegistry};
 
-// Tier 1 body sprite filename in the Walrus quilt — every fresh mint starts
-// at Tier 1 (Fake News) per spec, so this is the body identifier we always
-// stamp into the new NFT. Admin can mutate later via set_body_identifier
-// when the off-chain tier engine advances the wallet.
-const TIER1_BODY_IDENTIFIER: vector<u8> = b"Tier1-FakeNews.png";
+// Tier 1 body BASE NAME (no extension) — Display template appends
+// "-preview.png" for the static marketplace image. Every fresh mint starts
+// at Tier 1 (Fake News) per spec. Admin can mutate later via
+// set_body_identifier when the off-chain tier engine advances the wallet.
+const TIER1_BODY_IDENTIFIER: vector<u8> = b"Tier1-FakeNews";
 
 // ── Revenue split (basis points, sum to 10_000) ───────────────────────────
 // With referrer:    25 + 20 + 30 + 10 +  2.5 + 12.5 = 100
@@ -139,6 +139,7 @@ public fun addresses(cfg: &MintConfig): (address, address, address, address, add
 // Split without referrer: same first 4 buckets, then ~15% to dev.
 public fun mint(
     cfg: &mut MintConfig,
+    registry: &mut MintedRegistry,
     payment: Coin<SUI>,
     referrer: Option<address>,
     clock: &Clock,
@@ -186,6 +187,7 @@ public fun mint(
     transfer::public_transfer(payment, cfg.dev);
 
     let nft_id = trumpagotchi::mint_to(
+        registry,
         ctx.sender(),
         referrer,
         TIER1_BODY_IDENTIFIER.to_string(),

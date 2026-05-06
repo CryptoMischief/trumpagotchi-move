@@ -6,8 +6,16 @@ use sui::display;
 use sui::dynamic_field as df;
 use sui::event;
 use sui::package::{Self, Publisher};
+use sui::table::{Self, Table};
 use sui::transfer_policy;
+use sui::vec_set::{Self, VecSet};
 use kiosk::royalty_rule;
+
+// Pre-seeded exempt address — cryptomischief.sui — exempt from the
+// one-Trumpagotchi-per-wallet rule for testing purposes. Admin can add/
+// remove additional exempt addresses at runtime via add_exempt / remove_exempt.
+const PRE_EXEMPT_CRYPTOMISCHIEF: address =
+    @0x39ee291682e829771ad0c3ed46ebc69a962b7c2f9e6477409b22616bcf21ac34;
 
 // ── Soulbound NFT ──────────────────────────────────────────────────────────
 // `Trumpagotchi` deliberately has `key` but NOT `store`. Without `store` the
@@ -71,6 +79,16 @@ const ESlotOccupied: u64 = 2;
 const ESlotEmpty: u64 = 3;
 const ETierGateFailed: u64 = 4;
 const ENameTooLong: u64 = 5;
+const EAlreadyMinted: u64 = 6;
+
+// ── MintedRegistry ─────────────────────────────────────────────────────────
+// Shared object enforcing one-Trumpagotchi-per-wallet, with an exempt list
+// for test wallets. cryptomischief.sui is pre-seeded into `exempt` at init.
+public struct MintedRegistry has key {
+    id: UID,
+    minted: Table<address, ID>, // recipient → their NFT id (used for the lookup)
+    exempt: VecSet<address>,    // addresses bypassing the check
+}
 
 const KIND_OUTFIT: u8 = 1;
 const KIND_BACKGROUND: u8 = 2;
@@ -128,6 +146,25 @@ public struct CosmeticPolicyCreated has copy, drop {
 fun init(otw: TRUMPAGOTCHI, ctx: &mut TxContext) {
     let publisher = package::claim(otw, ctx);
 
+    // Shared registry — one entry per minter except for exempt addresses.
+    let mut exempt = vec_set::empty<address>();
+    vec_set::insert(&mut exempt, PRE_EXEMPT_CRYPTOMISCHIEF);
+    let registry = MintedRegistry {
+        id: object::new(ctx),
+        minted: table::new<address, ID>(ctx),
+        exempt,
+    };
+    transfer::share_object(registry);
+
+    // Display.image_url points at the *preview* quilt (single-frame portraits)
+    // so wallets and marketplaces show a clean image. The dapp's compositor
+    // separately fetches the full animated strip from the strip quilt.
+    //
+    // Trumpagotchi NFT: body_identifier is the base name (no extension);
+    // template appends "-preview.png".
+    // Cosmetic: walrus_identifier is the FULL filename in the preview quilt
+    // — body-style cosmetics use "<name>-preview.png", static backgrounds
+    // use their own "<name>.png" (which is also pinned in the preview quilt).
     let mut display = display::new<Trumpagotchi>(&publisher, ctx);
     display.add(b"name".to_string(), b"Trumpagotchi #{owner}".to_string());
     display.add(
@@ -136,9 +173,9 @@ fun init(otw: TRUMPAGOTCHI, ctx: &mut TxContext) {
     );
     display.add(
         b"image_url".to_string(),
-        b"https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{body_identifier}".to_string(),
+        b"https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/8lnSwb5lmXo3kqATuKNGWvIMSImtrZ2Qf7a-iGRrK3A/{body_identifier}-preview.png".to_string(),
     );
-    display.add(b"project_url".to_string(), b"https://sui-trump.com".to_string());
+    display.add(b"project_url".to_string(), b"https://suitrump.com".to_string());
     display.update_version();
 
     let mut cosmetic_display = display::new<Cosmetic>(&publisher, ctx);
@@ -148,7 +185,7 @@ fun init(otw: TRUMPAGOTCHI, ctx: &mut TxContext) {
     );
     cosmetic_display.add(
         b"image_url".to_string(),
-        b"https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{walrus_identifier}".to_string(),
+        b"https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/8lnSwb5lmXo3kqATuKNGWvIMSImtrZ2Qf7a-iGRrK3A/{walrus_identifier}".to_string(),
     );
     cosmetic_display.update_version();
 
@@ -189,13 +226,23 @@ public entry fun create_cosmetic_transfer_policy(
 // module that calls into this one with the payer + referrer. New mints always
 // start at Tier 1 (Fake News) regardless of wallet score, per spec — the
 // mint module passes the matching Tier 1 body identifier.
+//
+// Enforces 1-per-wallet via the MintedRegistry. Recipients in registry.exempt
+// (e.g. cryptomischief.sui for testing) bypass the check and are not added
+// to the minted table — they can mint repeatedly.
 public(package) fun mint_to(
+    registry: &mut MintedRegistry,
     recipient: address,
     referrer: Option<address>,
     body_identifier: String,
     clock: &Clock,
     ctx: &mut TxContext,
 ): ID {
+    let is_exempt = vec_set::contains(&registry.exempt, &recipient);
+    if (!is_exempt) {
+        assert!(!table::contains(&registry.minted, recipient), EAlreadyMinted);
+    };
+
     let now = clock::timestamp_ms(clock);
     let nft = Trumpagotchi {
         id: object::new(ctx),
@@ -212,6 +259,10 @@ public(package) fun mint_to(
     };
     let nft_id = object::id(&nft);
 
+    if (!is_exempt) {
+        table::add(&mut registry.minted, recipient, nft_id);
+    };
+
     event::emit(Minted {
         nft_id,
         owner: recipient,
@@ -221,6 +272,27 @@ public(package) fun mint_to(
     });
     transfer::transfer(nft, recipient);
     nft_id
+}
+
+// ── MintedRegistry admin ──────────────────────────────────────────────────
+public fun add_exempt(_admin: &AdminCap, registry: &mut MintedRegistry, who: address) {
+    if (!vec_set::contains(&registry.exempt, &who)) {
+        vec_set::insert(&mut registry.exempt, who);
+    };
+}
+
+public fun remove_exempt(_admin: &AdminCap, registry: &mut MintedRegistry, who: address) {
+    if (vec_set::contains(&registry.exempt, &who)) {
+        vec_set::remove(&mut registry.exempt, &who);
+    };
+}
+
+public fun has_minted(registry: &MintedRegistry, who: address): bool {
+    table::contains(&registry.minted, who)
+}
+
+public fun is_exempt(registry: &MintedRegistry, who: address): bool {
+    vec_set::contains(&registry.exempt, &who)
 }
 
 // ── Cosmetic issuance (admin or mint-flow gated) ───────────────────────────
@@ -256,17 +328,18 @@ public(package) fun issue_cosmetic(
     cid
 }
 
-// Admin-gated direct mint (used for promo, airdrops, smoke tests). The
-// public payment-mint flow lives in a separate `mint` module which calls
-// `mint_to` directly.
+// Admin-gated direct mint (used for promo, airdrops, smoke tests). Same
+// 1-per-wallet enforcement applies; admin can pre-add the recipient to
+// exempt if they need multiple.
 public fun admin_mint(
     _admin: &AdminCap,
+    registry: &mut MintedRegistry,
     recipient: address,
     body_identifier: String,
     clock: &Clock,
     ctx: &mut TxContext,
 ): ID {
-    mint_to(recipient, option::none(), body_identifier, clock, ctx)
+    mint_to(registry, recipient, option::none(), body_identifier, clock, ctx)
 }
 
 // Admin-gated direct issuance (used for top-5 POTUS shells, airdrops, etc).

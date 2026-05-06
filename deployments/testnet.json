@@ -2,23 +2,25 @@
   "network": "testnet",
   "deployer": "0xa80e6953e6c4389d0d58461e911418c89568aa3245dbf4b6c32dfa05d09579f1",
   "deployerAlias": "trumpagotchi-testnet",
-  "publishDigest": "EpHyq96SsMjkhgHn88QLxnefXP8C19NNYTaxv1JzLyj2",
-  "publishCheckpoint": "332911420",
-  "publishedAt": "2026-05-04T08:30:00.000Z",
-  "packageId": "0xfd3d2441b63da7866c1f2169eb83b2527775af2616bdac1fab6b5c0840987df5",
-  "upgradeCap": "0xb09221473f871696faa1aac2a70c45f0aaf83934d36fb3498f9a2115fe6e10ea",
-  "publisher": "0xd9e238ddcde2addf1e179238e87b39f9fc206cbfc194b71d61e37c62edcc43c5",
-  "adminCap": "0x766d96d72c9bc1c2ce8f7d3cf445847c44b3f1eb1099493434479f02a7092628",
-  "displayTrumpagotchi": "0x7c5cc4b55fbd52f29878d57e428000f3fc2b3a997fc9ede8811b869deefd2869",
-  "displayCosmetic": "0x73999dbb201d4c9327cfb41d189d89a9bb514af7e4eccb4e5062470822066e92",
-  "mintConfig": "0xad36ccbd96abd44698bba545bc80c8d493b81e6cc1700914ee47403775654504",
-  "cosmeticTransferPolicy": "0x9450c98b956e0a374323e5c005aa4aae0020e0cdb5b3920afece1251d9b107e6",
-  "cosmeticTransferPolicyCap": "0xe42c585e0886f5f48c9b241256f70e954ef859e1e444f36d104da0086e1ef105",
+  "publishDigest": "ACdmY99JqKMEZxWuYkp4BXHU2qkiZQJnLCTBESpjdmFs",
+  "publishedAt": "2026-05-04T13:40:00.000Z",
+  "packageId": "0xcdae68c47a8e6fd07b4a3a1e01ba062fb47086e1ff8b13194139226c81b5a5e7",
+  "upgradeCap": "0x4e88e6d8e71429d673ff6b10dcb0b599db51e7e7c152870a35656bf0ffea5583",
+  "publisher": "0x5360776e81ccc138ecdcbe14d82f23abc3790ef0859b3b88adb68de0182fd00a",
+  "adminCap": "0xe31d085a9f9f79f269d355313e771274e58e8bf9e2dde723d8e09fa4824cb088",
+  "displayTrumpagotchi": "0xe160d7d200f59f61fcb2dccef37a3342f1e3d657a62a27bf1c9a0937f2255b5f",
+  "displayCosmetic": "0x5b5286bd8dfbc0551fbb069dd9d8bc78e326a4f7ce0b4f87f73593bfaec2ca69",
+  "mintConfig": "0x601257f74abfa3e01e1129e70254166ed6e6e184381b5b57c9a3528c0bc55cc8",
+  "mintedRegistry": "0xca515f518019e4fda221586f64fd4aa22a24a2b43f55ae2347ebf76d7f467389",
+  "cosmeticTransferPolicy": "0x174966ead9265f423af5fc5816f655fa2e33370f87ecd3b52dc9c8d5f8c200c4",
+  "cosmeticTransferPolicyCap": "0xb36ae04c74e61cc60143fe5c9f23be2e4b527b193fa42f0e98379f2defd2c93e",
   "kioskRulesPackageTestnet": "0xe308bb3ed5367cd11a9c7f7e7aa95b2f3c9a8f10fa1d2b3cff38240f7898555d",
   "cosmeticRoyaltyBps": 250,
   "cosmeticRoyaltyBeneficiary": "0xaaad14a76c612fc6920607ab669ccbf9c9f174ef96b9555eaee6a87c9b1008eb",
+  "preExemptAddress": "0x39ee291682e829771ad0c3ed46ebc69a962b7c2f9e6477409b22616bcf21ac34",
+  "preExemptAlias": "cryptomischief.sui",
   "mintPricingTestnet": {
-    "note": "TESTNET ONLY — price lowered from canonical 20→0.1 SUI to fit testnet faucet budget. Restore via set_pricing(100000000→20000000000, 0→5000000000, 1→25, 100000000→80000000000) before any meaningful mainnet rehearsal.",
+    "note": "TESTNET ONLY — price lowered from canonical 20→0.1 SUI to fit testnet faucet budget. Restore via set_pricing(20000000000, 5000000000, 25, 80000000000) before mainnet rehearsal.",
     "currentBaseMist": 100000000,
     "currentStepMist": 0,
     "currentStepCount": 1,
@@ -26,23 +28,35 @@
     "canonicalBaseMist": 20000000000,
     "canonicalStepMist": 5000000000,
     "canonicalStepCount": 25,
-    "canonicalCapMist": 80000000000,
-    "loweredAt": "2026-05-04T08:32:00.000Z",
-    "loweredDigest": "CHicp6djobo9yesLxzeFGtEHhRhVJYW1s2wRmzkC1zgn"
+    "canonicalCapMist": 80000000000
   },
   "walrus": {
     "network": "testnet",
-    "quiltBlobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
-    "quiltSuiObjectId": "0x83e13567b17d602b367ba25326fa61b18abf9240f22be5a6889ad6fab0fb3e5e",
-    "endEpoch": 439,
-    "uploadedAt": "2026-05-03T22:55:00.000Z",
-    "patchCount": 353,
-    "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}",
-    "manifestPath": "assets/walrus_manifest.testnet.json",
-    "knownIssues": {
-      "filenameTypoInThisQuilt": "This testnet quilt has identifier 'StaryNight.png' (typo). On-disk renamed to 'StarryNight.png' for future quilts; mainnet pin must use the corrected name. The Move Display URL for that one background must use 'StaryNight.png' for THIS testnet quilt only.",
-      "specClarification": "Sprint 3 spec §Tier2+ said 'Debate x2' which read as two backgrounds; user confirmed there is only one Debate. Total background count is 59, matching the spec's per-row sum (1+18+9+16+9+1+2+1+2)."
-    }
+    "stripQuilt": {
+      "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
+      "suiObjectId": "0x83e13567b17d602b367ba25326fa61b18abf9240f22be5a6889ad6fab0fb3e5e",
+      "endEpoch": 439,
+      "uploadedAt": "2026-05-03T22:55:00.000Z",
+      "patchCount": 353,
+      "purpose": "Animated 4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor for animation.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}"
+    },
+    "animatedQuilt": {
+      "blobId": "fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY",
+      "suiObjectId": "0x438c9c18f7657683b1d70aff3b9d5fe91f7610f14a59448e6da3a46bfafb3c69",
+      "endEpoch": 441,
+      "uploadedAt": "2026-05-05T09:30:00.000Z",
+      "patchCount": 146,
+      "purpose": "Animated GIFs per body variant — body sprite (16 frames @ 3fps typical) composited onto Black Stars background per v8 Sprint 3 step 1. This is the on-chain Display.image_url for the Trumpagotchi NFT. Yolked excluded.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY/{body_identifier}-animated.gif",
+      "namingConvention": "body_identifier on Trumpagotchi NFT (e.g. 'Tier1-FakeNews', 'Tier4-Tremendous-Tuxedo'). Template appends '-animated.gif'.",
+      "supersededAssets": [
+        { "blobId": "yKfkk58T5EDUMuDvv1Cd0wOvqaGtIB7ncXfccdUx-as", "purpose": "static body+background composite previews (replaced by animated)" },
+        { "blobId": "8lnSwb5lmXo3kqATuKNGWvIMSImtrZ2Qf7a-iGRrK3A", "purpose": "v1 static body previews with transparent bg" }
+      ],
+      "displayFlippedAt": "2026-05-05T09:42:00.000Z (display::edit + update_version, no Move republish)"
+    },
+    "stripQuiltStillUsedFor": "frame-by-frame access from the dapp browser compositor; obsoleted for marketplace previews"
   },
   "mintAddresses": {
     "buyBurn": "0x573ca6f6d54c7dd4ee0aabde736cdec680011829a023995d3fd42e29a032e408",
@@ -52,23 +66,10 @@
     "dev": "0xde8295732da5fa041ff244307503c3c696d09ec4f33bd1ad85b36a4cd7f1b048"
   },
   "previousDeployments": [
-    {
-      "packageId": "0x1455c55de13a08fe0278ec09dbe188efadbbe404f55eadbb7eac6b2cab57b2c3",
-      "digest": "GpDxyZK51vNxcfX4Bng5xM6yZSftvZ66Z128bHdeuCwU",
-      "supersededAt": "2026-05-03T16:36:43.811Z",
-      "reason": "Added admin_mint public entry for testnet smoke testing"
-    },
-    {
-      "packageId": "0xdd97fc989544dff573ee7b5e1180dd73760bdde697e90fb0790db213e3d0efea",
-      "digest": "5Wmr6am7tdrHuKCGkDRd6rMA6UFDAvEc7hUVqNXsCsj4",
-      "supersededAt": "2026-05-03T22:00:00.000Z",
-      "reason": "Republished from scratch to add trumpagotchi::mint module (init must run on first publish to share MintConfig)"
-    },
-    {
-      "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5",
-      "digest": "3sjs1nukbnnhCQaPFT2APropnjKfJAXw1KLnMQEUt5sW",
-      "supersededAt": "2026-05-04T08:30:00.000Z",
-      "reason": "Republished to add Walrus Display image_url templates, body_identifier on Trumpagotchi, walrus_identifier on Cosmetic, and create_cosmetic_transfer_policy with 2.5% kiosk royalty rule (Tradeport-tradeable)"
-    }
+    { "packageId": "0x1455c55de13a08fe0278ec09dbe188efadbbe404f55eadbb7eac6b2cab57b2c3", "supersededAt": "2026-05-03T16:36:43.811Z", "reason": "Added admin_mint public entry" },
+    { "packageId": "0xdd97fc989544dff573ee7b5e1180dd73760bdde697e90fb0790db213e3d0efea", "supersededAt": "2026-05-03T22:00:00.000Z", "reason": "Added trumpagotchi::mint module" },
+    { "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5", "supersededAt": "2026-05-04T08:30:00.000Z", "reason": "Walrus Display URLs + Kiosk + 2.5% royalty" },
+    { "packageId": "0xfd3d2441b63da7866c1f2169eb83b2527775af2616bdac1fab6b5c0840987df5", "supersededAt": "2026-05-04T11:30:00.000Z", "reason": "Added MintedRegistry shared object enforcing 1-Trumpagotchi-per-wallet with cryptomischief.sui pre-exempted" },
+    { "packageId": "0xd164ca63c3b93880a1c7b54eb6627e3320e91d2e5bdb1e879af062066c1f38df", "supersededAt": "2026-05-04T13:40:00.000Z", "reason": "Display image_url now points at preview quilt (single-frame portraits) so wallets and marketplaces render cleanly; body_identifier semantics changed to base-name (no extension)" }
   ]
 }
