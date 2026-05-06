@@ -6,11 +6,12 @@ use sui::event;
 use sui::sui::SUI;
 use trumpagotchi::trumpagotchi::{Self, AdminCap, MintedRegistry};
 
-// Tier 1 body BASE NAME (no extension) — Display template appends
-// "-preview.png" for the static marketplace image. Every fresh mint starts
-// at Tier 1 (Fake News) per spec. Admin can mutate later via
-// set_body_identifier when the off-chain tier engine advances the wallet.
-const TIER1_BODY_IDENTIFIER: vector<u8> = b"Tier1-FakeNews";
+// Tier 1 base body identifier — every fresh mint starts here per v8 §3.
+// Display template appends "-animated.gif" against the animated quilt.
+// Admin can later flip the base identifiers via set_base_identifiers
+// when the off-chain identity engine advances tier.
+const TIER1_BASE_BODY: vector<u8> = b"Tier1-FakeNews";
+const DEFAULT_BASE_BACKGROUND: vector<u8> = b"BlackStars";
 
 // ── Revenue split (basis points, sum to 10_000) ───────────────────────────
 // With referrer:    25 + 20 + 30 + 10 +  2.5 + 12.5 = 100
@@ -190,7 +191,8 @@ public fun mint(
         registry,
         ctx.sender(),
         referrer,
-        TIER1_BODY_IDENTIFIER.to_string(),
+        TIER1_BASE_BODY.to_string(),
+        DEFAULT_BASE_BACKGROUND.to_string(),
         clock,
         ctx,
     );
