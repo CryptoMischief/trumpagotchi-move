@@ -57,14 +57,18 @@
       "displayFlippedAt": "2026-05-05T09:42:00.000Z (display::edit + update_version, no Move republish)"
     },
     "stripQuiltStillUsedFor": "frame-by-frame access from the dapp browser compositor; obsoleted for marketplace previews",
-    "paperDollQuilt": {
-      "blobId": "qTpv-JbQi39xsODi6b5ZUbJFgw6MG1VCZ7Iq6QhzF4s",
+    "cosmeticStandalonesQuilt": {
+      "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM",
       "endEpoch": 442,
-      "uploadedAt": "2026-05-06T06:45:00.000Z",
-      "patchCount": 19,
-      "purpose": "Standalone paper-doll PNGs (256x256 RGB, ~80KB each) — one per cosmetic outfit including SUITRUMP_SUIT base. Source = ~/Desktop/suitrump/trumpagotchi/ClothingNFTs/. Used as Cosmetic.walrus_identifier_standalone for shop cards and marketplace previews. v8 §12 inventory.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/qTpv-JbQi39xsODi6b5ZUbJFgw6MG1VCZ7Iq6QhzF4s/{NAME}.png",
-      "identifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"]
+      "uploadedAt": "2026-05-06T07:35:00.000Z",
+      "patchCount": 78,
+      "purpose": "Combined cosmetic-side standalone quilt: 19 outfit paper-dolls (from ClothingNFTs/) + 59 backgrounds (from Backgroundsv2/, flattened). Single source for Cosmetic.walrus_identifier_standalone — Display.image_url for any kind of Cosmetic resolves through here. Backgrounds use their .png filename directly; outfits use the ClothingNFTs ALLCAPS filename.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM/{walrus_identifier_standalone}",
+      "outfitIdentifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"],
+      "displayUrlFlippedAt": "2026-05-06T07:38:00.000Z (display::edit + update_version on Cosmetic Display)",
+      "supersededAssets": [
+        { "blobId": "qTpv-JbQi39xsODi6b5ZUbJFgw6MG1VCZ7Iq6QhzF4s", "purpose": "outfit paper-dolls only (19 patches); replaced by combined 78-patch quilt above so background cosmetics resolve from same URL pattern" }
+      ]
     }
   },
   "mintAddresses": {
