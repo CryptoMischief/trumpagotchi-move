@@ -5,3 +5,11 @@ build/
 .env.*
 !.env.example
 node_modules/
+
+# Claude Code session state — contains tool-permission entries that can
+# include CLI commands with embedded secrets (privkeys, DB URIs, etc.)
+.claude/
+
+# Sui CLI publish-history backups (Published.toml.v7-bak etc.) — local-only
+Published.toml.v*-bak
+*.toml.v*-bak

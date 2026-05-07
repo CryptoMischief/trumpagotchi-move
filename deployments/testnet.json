@@ -5,6 +5,16 @@
   "publishDigest": "DcN4Q61PyyyLvfDKXgfcsmbhgq8aeBguUUSmSacqJQd",
   "publishedAt": "2026-05-07T11:00:00.000Z",
   "packageId": "0x4eefd834cc26269827d056e3e52bbaa896b7477d507d1d163e861492f2ec520c",
+  "packageIdLatest": "0xbad0d7f8764a5c4a5547e56b950facadc5eeb697ba804e8ed6de6b75e98190b1",
+  "packageIdShopHome": "0x53434c64f5f8eff5b88b1bad66003046d698a3516a7464973c4a915ae90d7bbd",
+  "packageVersion": 3,
+  "shop": {
+    "objectId": "0x3b96551bc45158bf1f2ed9dace2217face98c6c2e541b9600c4be3240c3540e1",
+    "type": "0x53434c64f5f8eff5b88b1bad66003046d698a3516a7464973c4a915ae90d7bbd::shop::Shop",
+    "createdAt": "2026-05-07T15:55:00.000Z",
+    "createDigest": "7Rh2rH2utaeGX5TcvQxMjcG1SpLSkRtcku7D9pFVtJiy",
+    "note": "Shop module was added via package upgrade 2026-05-07. Two consecutive upgrade txs ran (first added shop module, second was a duplicate). Original 9th deployment package id stays canonical for trumpagotchi::* types; shop module's home package id is the first upgrade (0x53434c64...). Latest published-at = 0xbad0d7f8... (use for any new function calls). Shop shared object created post-upgrade via shop::create_shop(AdminCap)."
+  },
   "upgradeCap": "0xfb8ac6193adff6a0c90cf6f9b4660151a0415ec7b3c6b72e1af8dcf540593948",
   "publisher": "0xf4b3b130743dc6d692aabee108c9778a0872ae30296dd098e9dc713e09543437",
   "adminCap": "0xcadf5675eb658894a115c074a66d5dbce1088a61c9a22fed843521e7f1d6b6e2",
