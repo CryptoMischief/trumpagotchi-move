@@ -63,8 +63,19 @@ public struct Cosmetic has key, store {
     tier_gate: u8,
     // 0 = common, 1 = rare, 2 = epic, 3 = legendary
     rarity: u8,
+    // Paper-doll image used by Display.image_url for the cosmetic itself
+    // (shop card / marketplace preview). Same for all kinds.
     walrus_identifier_standalone: String,
-    walrus_identifier_equipped: String,
+    // Kind-dependent semantics for body / background composition:
+    //   kind=0 (outfit):     SUFFIX appended after the wearer's tier base body.
+    //                        e.g. "Tuxedo" → body_identifier = "Tier5-BigLeague-Tuxedo"
+    //                        when wearer is at T5. The equipped body strip
+    //                        thus advances automatically as the wearer's tier
+    //                        advances (after a claim_tier_advance call).
+    //   kind=1 (background): FULL identifier used as-is. e.g. "Ballroom".
+    //                        Backgrounds don't vary by tier.
+    //   kind=2 (shell):      Unused — shells don't mutate body/bg.
+    equipped_value: String,
 }
 
 // Dynamic-field key types — one per slot.
@@ -175,7 +186,7 @@ public struct CosmeticIssued has copy, drop {
     tier_gate: u8,
     rarity: u8,
     walrus_identifier_standalone: String,
-    walrus_identifier_equipped: String,
+    equipped_value: String,
     recipient: address,
 }
 
@@ -543,7 +554,7 @@ public(package) fun issue_cosmetic(
     tier_gate: u8,
     rarity: u8,
     walrus_identifier_standalone: String,
-    walrus_identifier_equipped: String,
+    equipped_value: String,
     recipient: address,
     ctx: &mut TxContext,
 ): ID {
@@ -558,7 +569,7 @@ public(package) fun issue_cosmetic(
         tier_gate,
         rarity,
         walrus_identifier_standalone,
-        walrus_identifier_equipped,
+        equipped_value,
     };
     let cid = object::id(&cosmetic);
     event::emit(CosmeticIssued {
@@ -568,7 +579,7 @@ public(package) fun issue_cosmetic(
         tier_gate,
         rarity,
         walrus_identifier_standalone: cosmetic.walrus_identifier_standalone,
-        walrus_identifier_equipped: cosmetic.walrus_identifier_equipped,
+        equipped_value: cosmetic.equipped_value,
         recipient,
     });
     transfer::public_transfer(cosmetic, recipient);
@@ -604,13 +615,13 @@ public fun admin_issue_cosmetic(
     tier_gate: u8,
     rarity: u8,
     walrus_identifier_standalone: String,
-    walrus_identifier_equipped: String,
+    equipped_value: String,
     recipient: address,
     ctx: &mut TxContext,
 ): ID {
     issue_cosmetic(
         kind, name, tier_gate, rarity,
-        walrus_identifier_standalone, walrus_identifier_equipped,
+        walrus_identifier_standalone, equipped_value,
         recipient, ctx,
     )
 }
@@ -631,12 +642,28 @@ public fun equip_outfit(
 ) {
     assert!(nft.owner == ctx.sender(), EWrongOwner);
     assert!(cosmetic.kind == KIND_OUTFIT, EWrongCosmeticKind);
-    let tier = tier_of(registry, ctx.sender());
-    assert!(tier >= cosmetic.tier_gate, EBelowTierGate);
     assert!(option::is_none(&nft.equipped_outfit), ESlotOccupied);
 
+    // Read tier + tier-base body from the registry so the equipped body
+    // strip matches the wearer's CURRENT tier (not the tier at the time
+    // the cosmetic was issued).
+    let entry = if (table::contains(&registry.tiers, ctx.sender())) {
+        *table::borrow(&registry.tiers, ctx.sender())
+    } else {
+        // Fall back to NFT's cached state. tier_of returns 1 here.
+        TierEntry {
+            tier: MIN_TIER,
+            score: 0,
+            target_base_body: nft.base_body_identifier,
+            target_base_background: nft.base_background_identifier,
+            last_update_ms: 0,
+            decay_grace_ends_ms: option::none(),
+        }
+    };
+    assert!(entry.tier >= cosmetic.tier_gate, EBelowTierGate);
+
     let cid = object::id(&cosmetic);
-    let new_body = cosmetic.walrus_identifier_equipped;
+    let new_body = compose_outfit_body(&entry.target_base_body, &cosmetic.equipped_value);
     nft.equipped_outfit = option::some(cid);
     nft.body_identifier = new_body;
     df::add(&mut nft.id, OutfitSlot {}, cosmetic);
@@ -649,6 +676,18 @@ public fun equip_outfit(
         new_background_identifier: nft.background_identifier,
         timestamp_ms: clock::timestamp_ms(clock),
     });
+}
+
+// Internal: glue base-body + outfit suffix into the body strip identifier.
+// Asset-naming convention: "Tier{N}-{TierName}-{OutfitName}"
+//   target_base_body = "Tier5-BigLeague"
+//   suffix           = "Tuxedo"
+//   result           = "Tier5-BigLeague-Tuxedo"
+fun compose_outfit_body(target_base_body: &String, suffix: &String): String {
+    let mut s = *target_base_body;
+    s.append_utf8(b"-");
+    s.append(*suffix);
+    s
 }
 
 public fun equip_background(
@@ -665,7 +704,7 @@ public fun equip_background(
     assert!(option::is_none(&nft.equipped_background), ESlotOccupied);
 
     let cid = object::id(&cosmetic);
-    let new_bg = cosmetic.walrus_identifier_equipped;
+    let new_bg = cosmetic.equipped_value;  // bg uses the full id directly
     nft.equipped_background = option::some(cid);
     nft.background_identifier = new_bg;
     df::add(&mut nft.id, BackgroundSlot {}, cosmetic);
@@ -769,9 +808,19 @@ public fun claim_tier_advance(
     nft.base_body_identifier = entry.target_base_body;
     nft.base_background_identifier = entry.target_base_background;
 
-    if (option::is_none(&nft.equipped_outfit)) {
+    // Recompute body identifier — even if an outfit is equipped, the body
+    // strip should advance to the wearer's new tier (e.g. switch from
+    // Tier4-Tremendous-Tuxedo to Tier5-BigLeague-Tuxedo when advancing T4→T5).
+    if (option::is_some(&nft.equipped_outfit)) {
+        let cosmetic: &Cosmetic = df::borrow(&nft.id, OutfitSlot {});
+        nft.body_identifier = compose_outfit_body(
+            &entry.target_base_body,
+            &cosmetic.equipped_value,
+        );
+    } else {
         nft.body_identifier = entry.target_base_body;
     };
+    // Backgrounds don't vary by tier — only update the slot if no bg equipped.
     if (option::is_none(&nft.equipped_background)) {
         nft.background_identifier = entry.target_base_background;
     };
@@ -825,7 +874,7 @@ public fun cosmetic_name(c: &Cosmetic): String { c.name }
 public fun cosmetic_tier_gate(c: &Cosmetic): u8 { c.tier_gate }
 public fun cosmetic_rarity(c: &Cosmetic): u8 { c.rarity }
 public fun cosmetic_walrus_standalone(c: &Cosmetic): String { c.walrus_identifier_standalone }
-public fun cosmetic_walrus_equipped(c: &Cosmetic): String { c.walrus_identifier_equipped }
+public fun cosmetic_equipped_value(c: &Cosmetic): String { c.equipped_value }
 
 // ── Test-only helpers ──────────────────────────────────────────────────────
 #[test_only]

@@ -131,7 +131,7 @@ fun test_equip_outfit_mutates_body_identifier() {
     admin_issue_outfit(
         &mut sc, b"Tuxedo", 4,
         b"TUXEDO.png",
-        b"Tier4-Tremendous-Tuxedo",
+        b"Tuxedo",                       // suffix; equip_outfit composes
         ALICE,
     );
 
@@ -302,7 +302,7 @@ fun test_equip_aborts_when_caller_not_owner() {
     sc.next_tx(ADMIN);
     admin_issue_outfit(
         &mut sc, b"Tuxedo", 1,
-        b"TUXEDO.png", b"Tier4-Tremendous-Tuxedo",
+        b"TUXEDO.png", b"Tuxedo",
         BOB,
     );
 
@@ -605,7 +605,10 @@ fun test_claim_tier_advance_pulls_registry_state_into_nft() {
 }
 
 #[test]
-fun test_claim_tier_advance_preserves_equipped_slots() {
+fun test_claim_tier_advance_recomposes_body_when_outfit_equipped() {
+    // 9th-deployment behaviour: claim_tier_advance must update the equipped
+    // body strip to match the wearer's new tier, e.g. switch from
+    // Tier4-Tremendous-Tuxedo to Tier7-MajorPlayer-Tuxedo on T4→T7 advance.
     let mut sc = bootstrap();
     sc.next_tx(ADMIN);
     let mut clk = clock::create_for_testing(sc.ctx());
@@ -614,14 +617,14 @@ fun test_claim_tier_advance_preserves_equipped_slots() {
     sc.next_tx(ADMIN);
     mint_default(&mut sc, &clk, ALICE);
 
-    // ALICE → T4 + equip Tuxedo (body becomes the tuxedo strip).
+    // ALICE → T4 + equip Tuxedo (suffix only — registry composes with base).
     clk.set_for_testing(1_000_000 + trumpagotchi::default_update_interval_ms() + 1);
     sc.next_tx(ADMIN);
     admin_set_tier(&mut sc, &clk, ALICE, 4, b"Tier4-Tremendous");
     sc.next_tx(ADMIN);
     admin_issue_outfit(
         &mut sc, b"Tuxedo", 4,
-        b"TUXEDO.png", b"Tier4-Tremendous-Tuxedo",
+        b"TUXEDO.png", b"Tuxedo",
         ALICE,
     );
 
@@ -633,23 +636,21 @@ fun test_claim_tier_advance_preserves_equipped_slots() {
     ts::return_shared(reg);
     assert!(trumpagotchi::body_identifier(&nft) == string::utf8(b"Tier4-Tremendous-Tuxedo"), 0);
 
-    // Engine advances ALICE to T7. Past rate limit.
+    // Engine advances ALICE to T7.
     let t = clock::timestamp_ms(&clk);
     clk.set_for_testing(t + trumpagotchi::default_update_interval_ms() + 1);
     sc.return_to_sender(nft);
     sc.next_tx(ADMIN);
     admin_set_tier(&mut sc, &clk, ALICE, 7, b"Tier7-MajorPlayer");
 
-    // ALICE claims — synced_tier and base_body advance, but body_identifier
-    // STAYS on the tuxedo strip because outfit is still equipped.
+    // ALICE claims — body recomposes to Tier7-MajorPlayer-Tuxedo.
     sc.next_tx(ALICE);
     let mut nft = sc.take_from_sender<Trumpagotchi>();
     let reg = sc.take_shared<TierRegistry>();
     trumpagotchi::claim_tier_advance(&mut nft, &reg, &clk, sc.ctx());
     assert!(trumpagotchi::synced_tier(&nft) == 7, 1);
     assert!(trumpagotchi::base_body_identifier(&nft) == string::utf8(b"Tier7-MajorPlayer"), 2);
-    // Tuxedo overrides — body still on tuxedo.
-    assert!(trumpagotchi::body_identifier(&nft) == string::utf8(b"Tier4-Tremendous-Tuxedo"), 3);
+    assert!(trumpagotchi::body_identifier(&nft) == string::utf8(b"Tier7-MajorPlayer-Tuxedo"), 3);
     ts::return_shared(reg);
     sc.return_to_sender(nft);
 

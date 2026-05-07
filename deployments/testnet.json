@@ -2,19 +2,19 @@
   "network": "testnet",
   "deployer": "0xa80e6953e6c4389d0d58461e911418c89568aa3245dbf4b6c32dfa05d09579f1",
   "deployerAlias": "trumpagotchi-testnet",
-  "publishDigest": "AB2ouUPwNrrGtXCRocwmTe4erwjT7NhZhAYQmzuzV2Ks",
-  "publishedAt": "2026-05-06T17:35:00.000Z",
-  "packageId": "0xc5426310bcf35fb5558d9855b8c44a4e71d0afa3916ebf0f8f8ea65b325d2650",
-  "upgradeCap": "0x1c5dad43bef64c66db290aaadd09de060b6d499a8bcc3fcbf7c40e7cc0f8a0e1",
-  "publisher": "0x384517c9e300a1cd492af498a973bd634a0b94dd3a80245ee00f0b95f853d0e5",
-  "adminCap": "0x36f5b0e609f6917d89c7c4a0d1c3a3f3dff79a171843711a8df3e3fd09c54944",
-  "displayTrumpagotchi": "0xd988f3fd2eaf26b4c995acfd2bb720511b33d5e58159030d7f91f37edb5234da",
-  "displayCosmetic": "0xaef0bac248ded6c4cf4da7d7fafc782ea7ff4eb5f6f03bcb320597800269899b",
-  "mintConfig": "0x87ce6c2f64b39bacb7ab58faef12f64f6cce2ebfa75c05a57654f58c044398ee",
-  "mintedRegistry": "0xfcbd18eacf6e9252fc0e881a3593ef266bc09f581c84259c7e44cb56509d21f3",
-  "tierRegistry": "0x174e93e1ffa3f01c2e0ba75f4d5506cd282e4d8913028ccddf9e46aa0dd201a6",
-  "cosmeticTransferPolicy": "0x95a714c4ab0d6c9b025de197ce98bb8880f5dfbdae611f0f7d51f95811d5745c",
-  "cosmeticTransferPolicyCap": "0x4e3a31e20d80db9eb110e839174f94eeca83f9b6588efaa425c84fc519a10688",
+  "publishDigest": "DcN4Q61PyyyLvfDKXgfcsmbhgq8aeBguUUSmSacqJQd",
+  "publishedAt": "2026-05-07T11:00:00.000Z",
+  "packageId": "0x4eefd834cc26269827d056e3e52bbaa896b7477d507d1d163e861492f2ec520c",
+  "upgradeCap": "0xfb8ac6193adff6a0c90cf6f9b4660151a0415ec7b3c6b72e1af8dcf540593948",
+  "publisher": "0xf4b3b130743dc6d692aabee108c9778a0872ae30296dd098e9dc713e09543437",
+  "adminCap": "0xcadf5675eb658894a115c074a66d5dbce1088a61c9a22fed843521e7f1d6b6e2",
+  "displayTrumpagotchi": "0x30703fd2dac93e162c026f1e294c110b92c19808a6c34f1d77aea06b7842f87f",
+  "displayCosmetic": "0x58813690cf8ce5296ce07a29f93688b8d022c53e1e4f32e135a54959069f11d3",
+  "mintConfig": "0x5b2ddad2fa890a546734999ed0c34220f30c9af0a1fa0e2d03c2af159c6773ac",
+  "mintedRegistry": "0xf667f4640c7c4efd19e7eab152820560e233226b0850c5092ed97cf391d9f025",
+  "tierRegistry": "0x7a0b70cb0eea7cef7b658f88e3c75d20e01d115610baec86879537ad5fa88020",
+  "cosmeticTransferPolicy": "0xc682849671034f05e5934892e39ccfa5307832b41e8665278885bb513aab881b",
+  "cosmeticTransferPolicyCap": "0x752b8ef5704fd69e97824c44842562dfbb768ca32ac87e700d7bc6e34a1beba7",
   "kioskRulesPackageTestnet": "0xe308bb3ed5367cd11a9c7f7e7aa95b2f3c9a8f10fa1d2b3cff38240f7898555d",
   "cosmeticRoyaltyBps": 250,
   "cosmeticRoyaltyBeneficiary": "0xaaad14a76c612fc6920607ab669ccbf9c9f174ef96b9555eaee6a87c9b1008eb",
@@ -40,11 +40,9 @@
     "network": "testnet",
     "stripQuilt": {
       "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
-      "suiObjectId": "0x83e13567b17d602b367ba25326fa61b18abf9240f22be5a6889ad6fab0fb3e5e",
       "endEpoch": 439,
-      "uploadedAt": "2026-05-03T22:55:00.000Z",
       "patchCount": 353,
-      "purpose": "Animated 4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor for animation.",
+      "purpose": "4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor.",
       "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}"
     },
     "animatedQuilt": {
@@ -53,19 +51,15 @@
       "endEpoch": 443,
       "uploadedAt": "2026-05-07T02:22:00.000Z",
       "patchCount": 146,
-      "purpose": "Animated GIFs per body variant — body sprite composited onto Black Stars background per v8 §13 step 1. On-chain Display.image_url for Trumpagotchi NFT. Yolked excluded. Re-rendered 2026-05-07 from user-cleaned source PNGs (white-fringe artifacts removed).",
+      "purpose": "Animated GIFs per body variant — body composited onto Black Stars. On-chain Display.image_url for Trumpagotchi NFT (9th deployment). Sprites cleaned 2026-05-07 to remove white-fringe edges.",
       "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc/{body_identifier}-animated.gif",
-      "displayFlippedAt": "2026-05-07T02:23:00.000Z (display::edit + update_version, version=2, no Move republish)",
-      "supersededAssets": [
-        { "blobId": "fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY", "purpose": "First animated quilt (146 GIFs from un-polished source). Replaced after sprite cleanup pass.", "supersededAt": "2026-05-07T02:23:00.000Z" }
-      ]
+      "displayFlippedAt": "2026-05-07T11:01:00.000Z (display::edit + update_version on 9th's Display, version=2)"
     },
     "cosmeticStandalonesQuilt": {
       "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM",
       "endEpoch": 442,
-      "uploadedAt": "2026-05-06T07:35:00.000Z",
       "patchCount": 78,
-      "purpose": "Combined cosmetic-side standalone quilt: 19 outfit paper-dolls + 59 backgrounds. Single source for Cosmetic.walrus_identifier_standalone — Display.image_url for any kind of Cosmetic resolves through here.",
+      "purpose": "Combined cosmetic-side standalone quilt: 19 outfit paper-dolls + 59 backgrounds. Display.image_url for any Cosmetic kind resolves through here.",
       "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM/{walrus_identifier_standalone}",
       "outfitIdentifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"]
     }
@@ -81,9 +75,10 @@
     { "packageId": "0x1455c55de13a08fe0278ec09dbe188efadbbe404f55eadbb7eac6b2cab57b2c3", "supersededAt": "2026-05-03T16:36:43.811Z", "reason": "Added admin_mint public entry" },
     { "packageId": "0xdd97fc989544dff573ee7b5e1180dd73760bdde697e90fb0790db213e3d0efea", "supersededAt": "2026-05-03T22:00:00.000Z", "reason": "Added trumpagotchi::mint module" },
     { "packageId": "0xd4709886412350dbea4a724fb138d9014efd859b95d1dccc6eb083cc9f1c2da5", "supersededAt": "2026-05-04T08:30:00.000Z", "reason": "Walrus Display URLs + Kiosk + 2.5% royalty" },
-    { "packageId": "0xfd3d2441b63da7866c1f2169eb83b2527775af2616bdac1fab6b5c0840987df5", "supersededAt": "2026-05-04T11:30:00.000Z", "reason": "Added MintedRegistry shared object enforcing 1-Trumpagotchi-per-wallet" },
-    { "packageId": "0xd164ca63c3b93880a1c7b54eb6627e3320e91d2e5bdb1e879af062066c1f38df", "supersededAt": "2026-05-04T13:40:00.000Z", "reason": "Display image_url points at preview quilt; body_identifier base-name semantics" },
-    { "packageId": "0xcdae68c47a8e6fd07b4a3a1e01ba062fb47086e1ff8b13194139226c81b5a5e7", "supersededAt": "2026-05-06T07:00:00.000Z", "reason": "v8 spec rewrite: kind 0/1/2; Cosmetic name+rarity+dual walrus identifiers; equip mutates identifiers; EBelowTierGate" },
-    { "packageId": "0x136e6fd2372b72fb20b5699024977f85f58a0df4359b890efeec9215030b810f", "supersededAt": "2026-05-06T17:35:00.000Z", "reason": "TierRegistry refactor: tier moved off NFT into shared registry so admin / identity engine can update without user signature; new claim_tier_advance for user-initiated visual sync; equip_* read tier from registry; set_current_tier and set_base_identifiers removed (Sui ownership rule blocked admin update of user-owned NFTs)" }
+    { "packageId": "0xfd3d2441b63da7866c1f2169eb83b2527775af2616bdac1fab6b5c0840987df5", "supersededAt": "2026-05-04T11:30:00.000Z", "reason": "Added MintedRegistry shared object" },
+    { "packageId": "0xd164ca63c3b93880a1c7b54eb6627e3320e91d2e5bdb1e879af062066c1f38df", "supersededAt": "2026-05-04T13:40:00.000Z", "reason": "Display image_url -> preview quilt; bare body_identifier" },
+    { "packageId": "0xcdae68c47a8e6fd07b4a3a1e01ba062fb47086e1ff8b13194139226c81b5a5e7", "supersededAt": "2026-05-06T07:00:00.000Z", "reason": "v8 spec rewrite: kind 0/1/2; Cosmetic name+rarity+dual walrus; equip mutates identifiers; EBelowTierGate" },
+    { "packageId": "0x136e6fd2372b72fb20b5699024977f85f58a0df4359b890efeec9215030b810f", "supersededAt": "2026-05-06T17:35:00.000Z", "reason": "TierRegistry refactor: shared registry; admin set_tier; claim_tier_advance" },
+    { "packageId": "0xc5426310bcf35fb5558d9855b8c44a4e71d0afa3916ebf0f8f8ea65b325d2650", "supersededAt": "2026-05-07T11:00:00.000Z", "reason": "Tier-aware body composition: Cosmetic.equipped_value carries SUFFIX (outfit) or full id (bg). equip_outfit composes target_base_body + suffix; claim_tier_advance recomputes body strip even when an outfit is equipped (so T4-Tuxedo wearer auto-advances to T5-Tuxedo on tier-up)" }
   ]
 }
