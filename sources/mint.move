@@ -4,7 +4,7 @@ use sui::clock::Clock;
 use sui::coin::{Self, Coin};
 use sui::event;
 use sui::sui::SUI;
-use trumpagotchi::trumpagotchi::{Self, AdminCap, MintedRegistry};
+use trumpagotchi::trumpagotchi::{Self, AdminCap, MintedRegistry, TierRegistry};
 
 // Tier 1 base body identifier — every fresh mint starts here per v8 §3.
 // Display template appends "-animated.gif" against the animated quilt.
@@ -140,7 +140,8 @@ public fun addresses(cfg: &MintConfig): (address, address, address, address, add
 // Split without referrer: same first 4 buckets, then ~15% to dev.
 public fun mint(
     cfg: &mut MintConfig,
-    registry: &mut MintedRegistry,
+    minted_registry: &mut MintedRegistry,
+    tier_registry: &mut TierRegistry,
     payment: Coin<SUI>,
     referrer: Option<address>,
     clock: &Clock,
@@ -188,7 +189,8 @@ public fun mint(
     transfer::public_transfer(payment, cfg.dev);
 
     let nft_id = trumpagotchi::mint_to(
-        registry,
+        minted_registry,
+        tier_registry,
         ctx.sender(),
         referrer,
         TIER1_BASE_BODY.to_string(),
