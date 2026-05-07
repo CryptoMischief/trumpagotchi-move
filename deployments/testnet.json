@@ -50,14 +50,18 @@
       ]
     },
     "animatedQuilt": {
-      "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc",
-      "suiObjectId": "0x5d58fcc670b15099e9bc12da4d46b3850455aa6c1d72faa6419664446d318a36",
+      "blobId": "hoyf58e_3c8lPAXnQVLwfSs7jmEx-cxNEtsZ-gi1FRY",
+      "suiObjectId": "0x3c7ddc2ec2ec4da58ed1d07b9b656a7b89f31c2ba70de18f201510f530b87a88",
       "endEpoch": 443,
-      "uploadedAt": "2026-05-07T02:22:00.000Z",
+      "uploadedAt": "2026-05-07T14:45:00.000Z",
       "patchCount": 146,
-      "purpose": "Animated GIFs per body variant — body composited onto Black Stars. On-chain Display.image_url for Trumpagotchi NFT (9th deployment). Sprites cleaned 2026-05-07 to remove white-fringe edges.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc/{body_identifier}-animated.gif",
-      "displayFlippedAt": "2026-05-07T11:01:00.000Z (display::edit + update_version on 9th's Display, version=2)"
+      "purpose": "APNG (animated PNG) per body variant — body composited onto Black Stars at 24-bit color. On-chain Display.image_url for Trumpagotchi NFT (9th deployment) routes through the server endpoint which proxies these patches. Switched from GIF on 2026-05-07 because GIF's 256-color per-frame palette was dropping the red on the tie + flickering on Suivision/Slush.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/hoyf58e_3c8lPAXnQVLwfSs7jmEx-cxNEtsZ-gi1FRY/{body_identifier}-animated.png",
+      "serverRouteTemplate": "https://dev-suitrump.vercel.app/api/trumpagotchi-render/{id}.png",
+      "displayFlippedAt": "2026-05-07T14:48:00.000Z (display::edit + update_version, .gif -> .png template)",
+      "supersededAssets": [
+        { "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc", "purpose": "GIF version of cleaned animated quilt; replaced by APNG for full-color tie + smooth animation", "supersededAt": "2026-05-07T14:48:00.000Z" }
+      ]
     },
     "cosmeticStandalonesQuilt": {
       "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM",

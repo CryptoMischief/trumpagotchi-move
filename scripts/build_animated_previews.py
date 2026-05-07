@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """
-Build per-body animated GIFs for marketplace previews. Each GIF is the body
-sprite (read from working/Bodies/_manifest.json — the canonical source per
-v8 §12) composited frame-by-frame onto the Black Stars starter background.
+Build per-body animated previews for marketplace + dapp display.
 
-Output: trumpagotchi/AnimatedPreviews/{base}-animated.gif
-where {base} matches the body_identifier on-chain (e.g. "Tier1-FakeNews",
-"Tier4-Tremendous-Tuxedo"). Display.image_url interpolates body_identifier
-into "{body_identifier}-animated.gif".
+Each preview is the body sprite (4096×256 horizontal strip) composited
+frame-by-frame onto the Black Stars starter background, saved as APNG —
+true 24-bit color, native browser support, no palette quantization. We
+moved off GIF on 2026-05-07 because Suivision/Slush were showing faded
+reds + flicker between frames (per-frame 256-color palettes).
+
+Output: trumpagotchi/AnimatedPreviews/{base}-animated.png
+where {base} matches the body_identifier on-chain. Display.image_url
+template interpolates {id} into a server route which proxies the
+matching APNG from the Walrus animated quilt.
 
 Yolked is excluded per user decision 2026-05-05.
 
-Per v8 §5.3 (amended 2026-05-05): Display.image_url is body+Black-Stars
-only. Equipped backgrounds change the dapp compositor only, not the
-marketplace preview.
+Per v8 §5.3: Display.image_url is body+Black-Stars only. Equipped
+backgrounds change the dapp compositor only, not the marketplace preview.
 """
 
 import argparse
@@ -113,30 +116,28 @@ def main() -> int:
                 comp = bg.copy()
                 body_frame = sheet_rgba.crop((i * fw, 0, (i + 1) * fw, fh))
                 comp.alpha_composite(body_frame)
-                # Default Pillow GIF encoder — per-frame adaptive palette,
-                # Floyd-Steinberg dither. The fringe-cleanup + shared-palette
-                # variant was rejected by user 2026-05-06 ("doesn't look good
-                # at all"); reverting to original behavior. User will polish
-                # source sprites manually in a separate pass.
-                frames.append(comp.convert("RGB").convert("P", palette=Image.ADAPTIVE, colors=256))
+                # APNG carries 24-bit color across all frames — no palette
+                # quantization, no dither artifacts, no per-frame flicker.
+                # Convert to RGB (drop alpha — already composited onto the
+                # opaque starter background).
+                frames.append(comp.convert("RGB"))
 
-        out = OUT_DIR / f"{png.stem}-animated.gif"
+        out = OUT_DIR / f"{png.stem}-animated.png"
         frames[0].save(
             out,
             save_all=True,
             append_images=frames[1:],
             duration=ms_per_frame,
             loop=0,
-            disposal=2,
-            optimize=True,
+            format="PNG",  # Pillow auto-emits APNG when save_all=True
         )
         size_kb = out.stat().st_size / 1024
         print(f"  OK   {png.name:48s}  frames={n:2d} fps={fps:3.0f}  →  {out.name}  ({size_kb:.0f} KB)")
         rendered += 1
 
-    total_bytes = sum(p.stat().st_size for p in OUT_DIR.glob("*.gif"))
+    total_bytes = sum(p.stat().st_size for p in OUT_DIR.glob("*-animated.png"))
     print()
-    print(f"Done. {rendered} animated GIF(s), {skipped} skipped.")
+    print(f"Done. {rendered} animated APNG(s), {skipped} skipped.")
     print(f"Output: {OUT_DIR}")
     print(f"Total size: {total_bytes / 1024 / 1024:.2f} MB")
     return 0
