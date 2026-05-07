@@ -28,8 +28,9 @@ except ImportError:
     sys.exit(1)
 
 
-# v8 deliverable folder — the renamed copy of working/Bodies/ matches the
-# on-chain identifier convention exactly (e.g. Tier4-Tremendous-Tuxedo.png).
+# v8 deliverable folder. The user polished the source PNGs in place on
+# 2026-05-07 to remove the white-fringe artifacts; sidecars (frame count /
+# fps) were unchanged.
 ROOT = Path("/Users/apple/Desktop/suitrump/trumpagotchi/NEW BODIES AND BACKGROUNDS DONE")
 BODIES_DIR = ROOT / "Bodies"
 STARTER_BG = ROOT / "Backgroundsv2" / "Starter" / "BlackStars.png"

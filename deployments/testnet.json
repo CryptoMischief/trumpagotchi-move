@@ -48,13 +48,17 @@
       "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}"
     },
     "animatedQuilt": {
-      "blobId": "fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY",
-      "suiObjectId": "0x438c9c18f7657683b1d70aff3b9d5fe91f7610f14a59448e6da3a46bfafb3c69",
-      "endEpoch": 441,
-      "uploadedAt": "2026-05-05T09:30:00.000Z",
+      "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc",
+      "suiObjectId": "0x5d58fcc670b15099e9bc12da4d46b3850455aa6c1d72faa6419664446d318a36",
+      "endEpoch": 443,
+      "uploadedAt": "2026-05-07T02:22:00.000Z",
       "patchCount": 146,
-      "purpose": "Animated GIFs per body variant — body sprite composited onto Black Stars background per v8 §13 step 1. On-chain Display.image_url for Trumpagotchi NFT. Yolked excluded.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY/{body_identifier}-animated.gif"
+      "purpose": "Animated GIFs per body variant — body sprite composited onto Black Stars background per v8 §13 step 1. On-chain Display.image_url for Trumpagotchi NFT. Yolked excluded. Re-rendered 2026-05-07 from user-cleaned source PNGs (white-fringe artifacts removed).",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc/{body_identifier}-animated.gif",
+      "displayFlippedAt": "2026-05-07T02:23:00.000Z (display::edit + update_version, version=2, no Move republish)",
+      "supersededAssets": [
+        { "blobId": "fUP4-zZix8juJvewM27ZllW3QG5RfYUQgN20oAJeBJY", "purpose": "First animated quilt (146 GIFs from un-polished source). Replaced after sprite cleanup pass.", "supersededAt": "2026-05-07T02:23:00.000Z" }
+      ]
     },
     "cosmeticStandalonesQuilt": {
       "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM",
