@@ -39,11 +39,15 @@
   "walrus": {
     "network": "testnet",
     "stripQuilt": {
-      "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk",
-      "endEpoch": 439,
-      "patchCount": 353,
-      "purpose": "4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk/{identifier}"
+      "blobId": "GQyVte3zQh_C5cMagHHs2ItGCxCdYo_qtGInoRcMzUQ",
+      "suiObjectId": "0xc4fb6cb3664b048e071fe61cd3501cefcf70f888acf85790aff817ceb8708d87",
+      "endEpoch": 443,
+      "uploadedAt": "2026-05-07T11:30:00.000Z",
+      "purpose": "4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor. Re-pinned 2026-05-07 with cleaned source PNGs (white-fringe artifacts removed).",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/GQyVte3zQh_C5cMagHHs2ItGCxCdYo_qtGInoRcMzUQ/{identifier}",
+      "supersededAssets": [
+        { "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk", "purpose": "Original strip quilt from un-cleaned source PNGs", "supersededAt": "2026-05-07T11:30:00.000Z" }
+      ]
     },
     "animatedQuilt": {
       "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc",
