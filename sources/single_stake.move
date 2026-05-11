@@ -11,6 +11,21 @@ module trumpagotchi::single_stake;
 // Architecture is single-weighted-pool per reward token: ONE accumulator per
 // pool, lock multipliers act as share weights only. Self-stabilising emission:
 // `emissions_per_second = effective_balance / DISTRIBUTION_WINDOW`.
+//
+// Visibility: every public entry is `public`, NOT `entry`. None of these
+// functions consume `&Random`, so the entry-only-for-randomness rule from
+// the Sui security best-practices doesn't apply. PTB composability is
+// intentional (e.g. claim+top_up in the same transaction).
+//
+// Capability pattern: all admin mutations take `&AdminCap` by reference (the
+// AdminCap is the trumpagotchi package's existing admin token, defined in
+// `trumpagotchi::trumpagotchi`). No address whitelists.
+//
+// Soulbound positions: StakePosition has `key` only, no `store`. Cannot be
+// transferred via `public_transfer`, cannot be wrapped or stored in another
+// object. Combined with the explicit `position.owner == sender` check on
+// every mutation, this is belt-and-braces against post-stake transfer
+// attacks (e.g. stake-then-sell-position, like the StakeReceipt CTF).
 
 use sui::balance::{Self, Balance};
 use sui::clock::{Self, Clock};
@@ -35,6 +50,8 @@ const EZeroAmount: u64 = 209;
 const ECampaignNotFound: u64 = 211;
 const ETooManyActiveCampaigns: u64 = 212;
 const ECampaignNotExpired: u64 = 213;
+const ECampaignNotFinalized: u64 = 214;
+const ERecoveryGraceNotElapsed: u64 = 215;
 
 // ── Lock kinds ─────────────────────────────────────────────────────────────
 const LOCK_FLEXIBLE: u8 = 0;
@@ -51,10 +68,23 @@ const MIN_STAKE_TOP_UP: u64 = 1_000_000_000;
 // emission rule. emission_rate = effective_balance / DISTRIBUTION_WINDOW_MS.
 const DISTRIBUTION_WINDOW_MS: u64 = 7_776_000_000;
 
-// MasterChef-style accumulator scaling. 1e12 — same precision as locker uses
-// for VictoryPoolAccumulator. Sufficient headroom against u128 overflow given
-// total weight bounded by 30B SUITRUMP × 2.0x and pool balances bounded by
-// total mint revenue + farm fees.
+// MasterChef-style accumulator scaling. 1e12 precision — matches the audited
+// SuiDex VictoryPoolAccumulator pattern.
+//
+// Overflow analysis:
+//   acc_reward_per_share grows by `(emitted × ACC_PRECISION) / total_weight`.
+//   Worst case for a single update: emitted = pool.balance, total_weight = MIN_STAKE × 1.0x.
+//   Pool 2 cap (Phase 1): 100M SUITRUMP = 1e8 × 1e6 = 1e14 raw.
+//   1e14 × 1e12 / (1e10) = 1e16. Cumulative over the contract lifetime
+//   bounded by total emissions ≤ pool seeds. Acc_reward_per_share remains
+//   well within u128 (max ≈ 3.4e38).
+//
+//   Per-position entitlement: weight × acc / ACC_PRECISION.
+//     max weight: cap × 2.0x = 100M × 1e6 × 2 = 2e14.
+//     max acc:    1e16 (as above).
+//     product:    2e30. Safe in u128.
+//
+//   Position reward_debt is u128 holding the same product. Same headroom.
 const ACC_PRECISION: u128 = 1_000_000_000_000;
 const BPS_DENOM: u64 = 10_000;
 
@@ -79,20 +109,35 @@ const MAX_ACTIVE_CAMPAIGNS: u64 = 5;
 // Early-unstake principal forfeit (50%). Forfeit goes to Pool 2 reward bucket.
 const EARLY_UNSTAKE_FORFEIT_BPS: u64 = 5_000;
 
+// Grace period after campaign expiry before admin can recover stranded
+// residual via recover_stranded_residual. 30 days. Gives stakers a full
+// month post-expiry/sweep to notice and claim what F14's floor preserved.
+// After this window, anything still in the campaign is treated as
+// permanently stranded (positions unstaked without bundling claim_campaign,
+// frontend cache races, etc.) and admin reclaims it to prevent
+// indefinite partner-token leakage.
+const RECOVERY_GRACE_MS: u64 = 2_592_000_000;
+
 // Phase 1 launch cap: 500M SUITRUMP (5% of 10B supply) at 6 decimals.
 const PHASE_1_CAP: u64 = 500_000_000_000_000;
 
 // ── Reward pool ────────────────────────────────────────────────────────────
 public struct RewardPool<phantom T> has store {
-    // Physical reserve. Decreases only on claim — never on emission update.
+    // INVARIANT: balance ≥ Σ(unclaimed pending) at all times. Decreases only
+    // on claim, never on emission update. Increases only on seed_pool* /
+    // forfeit deposit / campaign create.
     balance: Balance<T>,
+    // INVARIANT: 0 ≤ effective_balance ≤ initial_seeded.
     // Available-for-emission balance. Decreases each update by `emitted`.
     // emission_rate = effective_balance / DISTRIBUTION_WINDOW_MS, so as
-    // effective_balance drops, rate drops, pool can never empty.
+    // effective_balance drops, rate drops, pool can never empty (asymptotic).
     effective_balance: u64,
-    // MasterChef accumulator: sum over time of (emitted × ACC_PRECISION) / total_weight.
+    // INVARIANT: monotonically non-decreasing across update_single_pool calls.
+    // MasterChef accumulator: cumulative (emitted × ACC_PRECISION) / total_weight.
     acc_reward_per_share: u128,
+    // INVARIANT: monotonically non-decreasing.
     last_update_ms: u64,
+    // INVARIANT: ≤ total ever seeded. Increments on every claim by payout amount.
     total_distributed: u64,
 }
 
@@ -223,6 +268,12 @@ public struct CampaignCreated has copy, drop {
 public struct CampaignExpired has copy, drop {
     campaign_id: u64,
     swept_amount: u64,
+    timestamp_ms: u64,
+}
+
+public struct StrandedResidualRecovered has copy, drop {
+    campaign_id: u64,
+    amount: u64,
     timestamp_ms: u64,
 }
 
@@ -399,10 +450,12 @@ public fun sweep_expired_campaign<P, V, T>(
     let campaign: &mut Campaign<T> = df::borrow_mut(&mut vault.id, key);
     assert!(now >= campaign.expiry_ms, ECampaignNotExpired);
     // Final emission update so unclaimed-at-expiry rewards are accounted to
-    // stakers up to expiry_ms.
-    update_campaign_pool(&mut campaign.pool, vault.total_weight, campaign.expiry_ms);
+    // stakers up to expiry_ms. Linear release (v11) — pool drains fully by
+    // expiry_ms modulo rounding dust preserved by F14 floor.
+    let expiry = campaign.expiry_ms;
+    update_campaign_pool(campaign, vault.total_weight, expiry);
     campaign.finalized = true;
-    let swept = balance::value(&campaign.pool.balance) - estimated_unclaimed(&campaign.pool, vault.total_weight);
+    let swept = balance::value(&campaign.pool.balance) - unclaimed_emitted_floor(&campaign.pool);
     let swept_balance = balance::split(&mut campaign.pool.balance, swept);
     vault.active_campaign_count = vault.active_campaign_count - 1;
     event::emit(CampaignExpired {
@@ -413,7 +466,68 @@ public fun sweep_expired_campaign<P, V, T>(
     coin::from_balance(swept_balance, ctx)
 }
 
+// ── Stranded residual recovery (v13) ──────────────────────────────────────
+// Closes the partner-token leakage hole created by the F14 + unstake-bundle
+// interaction. Background:
+//
+//   F14 (unclaimed_emitted_floor) was added to keep `sweep_expired_campaign`
+//   from over-draining when emissions had accrued to acc that stakers
+//   hadn't claimed yet. It preserves `bal - effective` worth of balance in
+//   the campaign post-sweep so legitimate stakers can still pull their
+//   residual via claim_campaign.
+//
+//   But if a position is consumed (unstake) WITHOUT the unstake PTB
+//   including a claim_campaign call for that campaign — e.g. when the
+//   frontend's active-campaign list is stale and skips a new campaign —
+//   the position's accrued share remains owed by `acc_reward_per_share` to
+//   no one. F14 preserves it, F15 prevents future positions from claiming
+//   it (lazy-init locks new positions' debt at current entitlement). The
+//   residual becomes permanently stranded.
+//
+// This function lets the admin reclaim that stranded balance after a
+// 30-day grace period (RECOVERY_GRACE_MS) past campaign expiry. Stakers
+// get a full month of post-expiry / post-sweep time to notice and claim
+// what's legitimately theirs. After that window, anything left is treated
+// as forfeit-and-recoverable.
+//
+// Requires:
+//   - campaign exists
+//   - campaign.finalized == true (must have been swept first — this is
+//     the second-pass cleanup, not a replacement for sweep)
+//   - now >= campaign.expiry_ms + RECOVERY_GRACE_MS
+//
+// Idempotent: subsequent calls return a zero-balance Coin<T>.
+public fun recover_stranded_residual<P, V, T>(
+    _admin: &AdminCap,
+    vault: &mut Vault<P, V>,
+    campaign_id: u64,
+    clock: &Clock,
+    ctx: &mut TxContext,
+): Coin<T> {
+    let key = CampaignKey { id: campaign_id };
+    assert!(df::exists<CampaignKey>(&vault.id, key), ECampaignNotFound);
+    let campaign: &mut Campaign<T> = df::borrow_mut(&mut vault.id, key);
+    assert!(campaign.finalized, ECampaignNotFinalized);
+    let now = clock::timestamp_ms(clock);
+    assert!(now >= campaign.expiry_ms + RECOVERY_GRACE_MS, ERecoveryGraceNotElapsed);
+    let amount = balance::value(&campaign.pool.balance);
+    let recovered_balance = balance::split(&mut campaign.pool.balance, amount);
+    event::emit(StrandedResidualRecovered {
+        campaign_id,
+        amount,
+        timestamp_ms: now,
+    });
+    coin::from_balance(recovered_balance, ctx)
+}
+
 // ── Core entry: stake ──────────────────────────────────────────────────────
+// Convenience entry that creates a position and routes it to the sender in
+// one call. Equivalent to:
+//   stake_non_entry(...) -> position
+//   transfer_position_to_owner(position)
+// Frontends that want to atomically initialise per-campaign reward_debt
+// (closing the F15 forfeit window) should bypass this and chain the two
+// composable variants directly in a single PTB. See module-level doc.
 public fun stake<P, V>(
     vault: &mut Vault<P, V>,
     tier_registry: &TierRegistry,
@@ -422,6 +536,28 @@ public fun stake<P, V>(
     clock: &Clock,
     ctx: &mut TxContext,
 ) {
+    let position = stake_non_entry(vault, tier_registry, coin, lock_kind, clock, ctx);
+    transfer_position_to_owner(position);
+}
+
+// ── Composable variant — returns position by value ────────────────────────
+// Mirrors Sui's own `request_add_stake_non_entry` convention: creates and
+// returns the StakePosition instead of transferring it, so callers can
+// chain it through subsequent PTB commands (e.g. init_campaign_debt for
+// every active campaign) before the final transfer.
+//
+// Same authorisation, validation, and accounting as `stake` — only the
+// transfer step is hoisted out. ALL state mutation (principal join, total
+// locked/weight/position_count increments, Staked event) happens here so
+// every code path observes a consistent vault state.
+public fun stake_non_entry<P, V>(
+    vault: &mut Vault<P, V>,
+    tier_registry: &TierRegistry,
+    coin: Coin<P>,
+    lock_kind: u8,
+    clock: &Clock,
+    ctx: &mut TxContext,
+): StakePosition<P, V> {
     assert!(vault.cap_active, EVaultPaused);
     assert!(
         lock_kind == LOCK_FLEXIBLE
@@ -481,9 +617,25 @@ public fun stake<P, V>(
         weight,
         timestamp_ms: now,
     });
-    // Soulbound transfer — StakePosition is `key` only so this is the only
-    // way it can move, and it can never move again.
-    transfer::transfer(position, sender);
+    position
+}
+
+// ── Soulbound transfer helper ─────────────────────────────────────────────
+// Routes a position to its stored owner. Needed because StakePosition is
+// `key`-only (intentional — positions are non-transferable once placed)
+// which means tx.transferObjects in a PTB cannot consume it (that command
+// requires `key + store`). This helper bridges the gap: PTB callers chain
+// stake_non_entry → init_campaign_debt(s) → transfer_position_to_owner
+// to atomically stake, lock per-campaign debt at entry, and finalise the
+// soulbound routing in a single transaction.
+//
+// No authorisation check: the destination address is whatever was stored
+// in `position.owner` at stake time — there is no way for a caller to
+// redirect it. Anyone who somehow ends up holding a freshly-returned
+// position by value can only send it home.
+public fun transfer_position_to_owner<P, V>(position: StakePosition<P, V>) {
+    let owner = position.owner;
+    transfer::transfer(position, owner);
 }
 
 // ── Top-up ─────────────────────────────────────────────────────────────────
@@ -506,16 +658,17 @@ public fun top_up<P, V>(
 
     let now = clock::timestamp_ms(clock);
     update_pools(vault, now);
-    auto_convert_if_due(vault, position, now);
+    auto_convert_if_due(vault, position, now, ctx);
 
     // Pay out pending before mutating weight/debt.
-    let (claimed1, claimed2) = settle_rewards(vault, position, ctx);
+    let (claimed1, claimed2) = settle_rewards(vault, position, now, ctx);
 
-    // Recompute weight on the new total principal (using current admin
-    // multipliers so a top-up after a multiplier change picks up the new
-    // value — but only on the added amount's contribution; preserve the
-    // staked weight on existing principal? Simpler: recompute on the total).
-    let mult_bps = lock_multiplier_bps(position.lock_kind);
+    // Recompute weight on the new total principal. F13 fix: if the position
+    // has been auto-converted (past lock end), use the flexible multiplier
+    // — otherwise topping up a converted position would silently re-apply
+    // the original lock's multiplier without re-locking the position.
+    let mult_bps = if (position.converted) MULT_FLEXIBLE_BPS
+        else lock_multiplier_bps(position.lock_kind);
     let new_principal = position.principal_amount + added;
     let new_weight = (((new_principal as u128) * (mult_bps as u128)) / (BPS_DENOM as u128)) as u64;
 
@@ -554,8 +707,8 @@ public fun claim_rewards<P, V>(
     assert!(position.owner == sender, EWrongOwner);
     let now = clock::timestamp_ms(clock);
     update_pools(vault, now);
-    auto_convert_if_due(vault, position, now);
-    settle_rewards(vault, position, ctx)
+    auto_convert_if_due(vault, position, now, ctx);
+    settle_rewards(vault, position, now, ctx)
 }
 
 // Per-campaign claim. Caller must specify the campaign's reward token T.
@@ -572,22 +725,45 @@ public fun claim_campaign<P, V, T>(
     assert!(df::exists<CampaignKey>(&vault.id, key), ECampaignNotFound);
     let now = clock::timestamp_ms(clock);
     update_pools(vault, now);
-    auto_convert_if_due(vault, position, now);
+    auto_convert_if_due(vault, position, now, ctx);
 
     let campaign: &mut Campaign<T> = df::borrow_mut(&mut vault.id, key);
     let cap_now = if (now < campaign.expiry_ms) now else campaign.expiry_ms;
-    update_campaign_pool(&mut campaign.pool, vault.total_weight, cap_now);
+    update_campaign_pool(campaign, vault.total_weight, cap_now);
 
     // Per-campaign reward debt is stored as a dynamic field on the position
-    // keyed by CampaignKey. First claim seeds it to current acc.
+    // keyed by CampaignKey. First encounter:
+    //   - Position predates campaign (stake_ms <= campaign.start_ms):
+    //     entitled to all emissions from campaign start → prior_debt = 0.
+    //   - Position joined after campaign created (stake_ms > start_ms):
+    //     NOT entitled to past emissions → prior_debt = current entitlement
+    //     so the first claim pays 0 and the position only accrues deltas
+    //     from now forward.
+    //
+    // F15 fix: pre-fix `else 0` let a position that joined long after a
+    // campaign was created (or after the campaign was finalized with a
+    // residual) drain weight × current_acc / PRECISION on its first
+    // claim_campaign — i.e. harvest historical emissions it didn't earn.
+    //
+    // EDGE CASE — late-joiner forfeit: a position that joins mid-campaign
+    // and lets time pass before its first claim_campaign forfeits the
+    // emissions between its stake_ms and that first call. Mitigation:
+    // the frontend bundles a claim_campaign in every unstake PTB (see
+    // buildUnstakeAtMaturityTx / buildUnstakeFlexibleTx /
+    // buildUnstakeEarlyTx) which initialises the debt at exit. For longer
+    // engagement, callers should call claim_campaign once shortly after
+    // stake to lock the entry-point. Move's lack of variadic type-args
+    // prevents a stake-time auto-init across all active campaign types.
     let pos_debt_key = CampaignKey { id: campaign_id };
-    let prior_debt: u128 = if (df::exists<CampaignKey>(&position.id, pos_debt_key)) {
-        *df::borrow<CampaignKey, u128>(&position.id, pos_debt_key)
-    } else {
-        0
-    };
     let entitlement =
         (campaign.pool.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
+    let prior_debt: u128 = if (df::exists<CampaignKey>(&position.id, pos_debt_key)) {
+        *df::borrow<CampaignKey, u128>(&position.id, pos_debt_key)
+    } else if (position.stake_ms <= campaign.start_ms) {
+        0
+    } else {
+        entitlement
+    };
     let claimable = if (entitlement > prior_debt) {
         ((entitlement - prior_debt) as u64)
     } else { 0 };
@@ -618,6 +794,57 @@ public fun claim_campaign<P, V, T>(
         timestamp_ms: now,
     });
     coin_out
+}
+
+// ── F15 forfeit-window mitigation ─────────────────────────────────────────
+// init_campaign_debt locks a position's per-campaign reward_debt at the
+// CURRENT accumulator value without paying anything out. It exists to
+// close the "between-stake-and-first-claim forfeit" edge case that the
+// F15 fix introduces: a position that joins after a campaign has started
+// has its prior_debt lazily initialised to current entitlement on first
+// claim_campaign — which means any emissions accrued to `acc` between
+// stake_ms and that first call are absorbed by the debt and become
+// unclaimable. Frontends SHOULD submit a follow-up PTB right after
+// `stake` that calls init_campaign_debt for each active campaign,
+// shrinking the forfeit window to ~one block.
+//
+// Idempotent — calling on a position that already has a debt DF entry
+// for this campaign is a no-op (existing stored debt is left untouched).
+// Same authorisation as claim_campaign (sender must own the position).
+//
+// Does NOT mutate campaign state beyond running its update_single_pool
+// emission tick (needed to compute current acc accurately). Pays no coin.
+public fun init_campaign_debt<P, V, T>(
+    vault: &mut Vault<P, V>,
+    position: &mut StakePosition<P, V>,
+    campaign_id: u64,
+    clock: &Clock,
+    ctx: &mut TxContext,
+) {
+    let sender = tx_context::sender(ctx);
+    assert!(position.owner == sender, EWrongOwner);
+    let key = CampaignKey { id: campaign_id };
+    assert!(df::exists<CampaignKey>(&vault.id, key), ECampaignNotFound);
+    let now = clock::timestamp_ms(clock);
+    update_pools(vault, now);
+    auto_convert_if_due(vault, position, now, ctx);
+
+    let campaign: &mut Campaign<T> = df::borrow_mut(&mut vault.id, key);
+    let cap_now = if (now < campaign.expiry_ms) now else campaign.expiry_ms;
+    update_campaign_pool(campaign, vault.total_weight, cap_now);
+
+    let pos_debt_key = CampaignKey { id: campaign_id };
+    if (df::exists<CampaignKey>(&position.id, pos_debt_key)) return;
+
+    // Mirrors claim_campaign's lazy-init branch: positions predating the
+    // campaign get debt = 0 (entitled to whole window); late joiners get
+    // debt = current entitlement (no historical drain).
+    let initial_debt: u128 = if (position.stake_ms <= campaign.start_ms) {
+        0
+    } else {
+        (campaign.pool.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION
+    };
+    df::add<CampaignKey, u128>(&mut position.id, pos_debt_key, initial_debt);
 }
 
 // ── Unstake at maturity ────────────────────────────────────────────────────
@@ -675,6 +902,47 @@ fun update_pools<P, V>(vault: &mut Vault<P, V>, now: u64) {
     update_single_pool<P>(&mut vault.pool2_suitrump, vault.total_weight, now);
 }
 
+// Pool 3 (partner campaign) emission tick — LINEAR release.
+//
+// Unlike Pool 1 / Pool 2 which use the self-stabilising rule
+// (`emission = effective × dt / DISTRIBUTION_WINDOW_MS`) so the protocol's
+// deep reward pools asymptotically empty without ever hitting zero,
+// partner campaigns are explicitly bounded: a partner deposits an amount
+// X intending it to drain over duration D. Linear release gives constant
+// emission rate `X / D`, so the pool reaches dust by `start + D` (modulo
+// the rounding floor preserved by F14 on sweep).
+//
+// Math:
+//   emit_rate = initial_amount / duration_ms (raw per ms, constant)
+//   emitted_in_dt = initial_amount × dt / duration_ms
+//
+// Clamped to `effective_balance` so we never over-emit past what has
+// actually been deposited (defensive against fp drift in repeated calls).
+// Callers MUST pass `now` already capped at `campaign.expiry_ms` so no
+// emissions are credited past expiry.
+fun update_campaign_pool<T>(campaign: &mut Campaign<T>, total_weight: u64, now: u64) {
+    if (now <= campaign.pool.last_update_ms) return;
+    if (total_weight == 0 || campaign.pool.effective_balance == 0) {
+        campaign.pool.last_update_ms = now;
+        return
+    };
+    let dt_ms = now - campaign.pool.last_update_ms;
+    let duration_ms = campaign.expiry_ms - campaign.start_ms;
+    let mut emitted_u128 =
+        ((campaign.initial_amount as u128) * (dt_ms as u128)) / (duration_ms as u128);
+    let eff_u128 = campaign.pool.effective_balance as u128;
+    if (emitted_u128 > eff_u128) emitted_u128 = eff_u128;
+    if (emitted_u128 == 0) {
+        campaign.pool.last_update_ms = now;
+        return
+    };
+    let emitted = (emitted_u128 as u64);
+    let acc_delta = (emitted_u128 * ACC_PRECISION) / (total_weight as u128);
+    campaign.pool.acc_reward_per_share = campaign.pool.acc_reward_per_share + acc_delta;
+    campaign.pool.effective_balance = campaign.pool.effective_balance - emitted;
+    campaign.pool.last_update_ms = now;
+}
+
 fun update_single_pool<T>(pool: &mut RewardPool<T>, total_weight: u64, now: u64) {
     if (now <= pool.last_update_ms) return;
     if (total_weight == 0 || pool.effective_balance == 0) {
@@ -702,26 +970,34 @@ fun update_single_pool<T>(pool: &mut RewardPool<T>, total_weight: u64, now: u64)
     pool.last_update_ms = now;
 }
 
-fun update_campaign_pool<T>(pool: &mut RewardPool<T>, total_weight: u64, now: u64) {
-    update_single_pool<T>(pool, total_weight, now);
-}
-
-// Settle Pool 1 + Pool 2 entitlements for a position. Mutates position debts,
-// returns the two coins.
-fun settle_rewards<P, V>(
+// Compute Pool 1 + Pool 2 entitlements for a given weight + prior debts and
+// pay them out as coins. Pure helper — does NOT touch any position state, so
+// it works in both the by-ref settle path (settle_rewards, top_up_settle) and
+// the by-value unstake path (finalize_unstake) where the position has already
+// been decomposed.
+//
+// Returns: (coin_v, coin_p, payout1, payout2, new_debt1, new_debt2).
+// Caller is responsible for persisting new_debt1 / new_debt2 if the position
+// continues to exist.
+//
+// INVARIANT: payout ≤ pending ≤ entitlement. The clamp to physical balance
+// defends against accumulator / balance drift causing overdraw.
+fun pay_pending<P, V>(
     vault: &mut Vault<P, V>,
-    position: &mut StakePosition<P, V>,
+    weight: u64,
+    prior_debt1: u128,
+    prior_debt2: u128,
     ctx: &mut TxContext,
-): (Coin<V>, Coin<P>) {
+): (Coin<V>, Coin<P>, u64, u64, u128, u128) {
     let entitlement1 =
-        (vault.pool1_victory.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
+        (vault.pool1_victory.acc_reward_per_share * (weight as u128)) / ACC_PRECISION;
     let entitlement2 =
-        (vault.pool2_suitrump.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
-    let pending1 = if (entitlement1 > position.reward_debt_pool1) {
-        ((entitlement1 - position.reward_debt_pool1) as u64)
+        (vault.pool2_suitrump.acc_reward_per_share * (weight as u128)) / ACC_PRECISION;
+    let pending1 = if (entitlement1 > prior_debt1) {
+        ((entitlement1 - prior_debt1) as u64)
     } else { 0 };
-    let pending2 = if (entitlement2 > position.reward_debt_pool2) {
-        ((entitlement2 - position.reward_debt_pool2) as u64)
+    let pending2 = if (entitlement2 > prior_debt2) {
+        ((entitlement2 - prior_debt2) as u64)
     } else { 0 };
 
     // Clamp to physical balance (defense against accumulator/balance drift).
@@ -729,9 +1005,6 @@ fun settle_rewards<P, V>(
     let bal2 = balance::value(&vault.pool2_suitrump.balance);
     let payout1 = if (pending1 > bal1) bal1 else pending1;
     let payout2 = if (pending2 > bal2) bal2 else pending2;
-
-    position.reward_debt_pool1 = entitlement1;
-    position.reward_debt_pool2 = entitlement2;
 
     let coin1 = if (payout1 > 0) {
         vault.pool1_victory.total_distributed = vault.pool1_victory.total_distributed + payout1;
@@ -742,34 +1015,83 @@ fun settle_rewards<P, V>(
         coin::from_balance(balance::split(&mut vault.pool2_suitrump.balance, payout2), ctx)
     } else { coin::zero<P>(ctx) };
 
+    (coin1, coin2, payout1, payout2, entitlement1, entitlement2)
+}
+
+// Settle Pool 1 + Pool 2 entitlements for a position. Persists updated debts
+// and emits RewardsClaimed. `now` is threaded in from the caller so the event
+// timestamp matches every other event in the same tx.
+fun settle_rewards<P, V>(
+    vault: &mut Vault<P, V>,
+    position: &mut StakePosition<P, V>,
+    now: u64,
+    ctx: &mut TxContext,
+): (Coin<V>, Coin<P>) {
+    let (coin1, coin2, payout1, payout2, new_debt1, new_debt2) = pay_pending(
+        vault,
+        position.weight,
+        position.reward_debt_pool1,
+        position.reward_debt_pool2,
+        ctx,
+    );
+    position.reward_debt_pool1 = new_debt1;
+    position.reward_debt_pool2 = new_debt2;
+
     event::emit(RewardsClaimed {
         position_id: object::id(position),
         owner: position.owner,
         pool1_victory_claimed: payout1,
         pool2_suitrump_claimed: payout2,
-        timestamp_ms: tx_context::epoch_timestamp_ms(ctx),
+        timestamp_ms: now,
     });
     (coin1, coin2)
 }
 
 // Auto-convert lock-end positions to flexible weight. Called at top of
 // every state-changing entry. No-op if not yet due or already converted.
+//
+// Pays out OLD-weight pending Pool 1 + Pool 2 rewards before resetting the
+// position's weight + debt. Without this, the user would forfeit all rewards
+// accrued at the locked weight from stake-time to lock-end (see F12 in
+// AUDIT_READINESS.md). Coins are transferred directly to position.owner since
+// the pending unambiguously belongs to them and there's no choice for the
+// caller to make.
+//
+// (Note: `unstake_at_maturity` does not call this function — `finalize_unstake`
+// pays pending at the OLD weight via `pay_pending` and consumes the position,
+// so the conversion is implicit and the same forfeit hazard does not apply.)
 fun auto_convert_if_due<P, V>(
     vault: &mut Vault<P, V>,
     position: &mut StakePosition<P, V>,
     now: u64,
+    ctx: &mut TxContext,
 ) {
     if (position.converted) return;
     if (position.lock_kind == LOCK_FLEXIBLE) return;
     if (position.lock_unlock_ms == 0 || now < position.lock_unlock_ms) return;
 
-    // Settle pending against current weight first so we don't lose entitlement.
-    let entitlement1 =
-        (vault.pool1_victory.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
-    let entitlement2 =
-        (vault.pool2_suitrump.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
-    // We don't pay out here — settle_rewards does. Instead recompute debts so
-    // the pre-conversion entitlement transfers cleanly to the new weight.
+    // Pay OLD-weight pending before resetting debt. F12 fix.
+    let owner = position.owner;
+    let position_id = object::id(position);
+    let (coin_v, coin_p, payout1, payout2, _new_debt1, _new_debt2) = pay_pending(
+        vault,
+        position.weight,
+        position.reward_debt_pool1,
+        position.reward_debt_pool2,
+        ctx,
+    );
+    transfer::public_transfer(coin_v, owner);
+    transfer::public_transfer(coin_p, owner);
+    if (payout1 > 0 || payout2 > 0) {
+        event::emit(RewardsClaimed {
+            position_id,
+            owner,
+            pool1_victory_claimed: payout1,
+            pool2_suitrump_claimed: payout2,
+            timestamp_ms: now,
+        });
+    };
+
     let new_weight =
         (((position.principal_amount as u128) * (MULT_FLEXIBLE_BPS as u128))
             / (BPS_DENOM as u128)) as u64;
@@ -783,21 +1105,16 @@ fun auto_convert_if_due<P, V>(
         (vault.pool2_suitrump.acc_reward_per_share * (new_weight as u128)) / ACC_PRECISION;
     position.converted = true;
 
-    // Force a no-op read of the entitlement vars to avoid unused warnings —
-    // they exist for documentation; future revisions may auto-pay here.
-    let _ = entitlement1;
-    let _ = entitlement2;
-
     event::emit(AutoConverted {
-        position_id: object::id(position),
+        position_id,
         old_weight,
         new_weight,
         timestamp_ms: now,
     });
 }
 
-// Common unstake path. Auto-claims pending rewards. Splits principal per the
-// `early` flag.
+// Common unstake path. Auto-claims pending rewards via pay_pending (shared
+// with settle_rewards), then splits principal per the `early` flag.
 fun finalize_unstake<P, V>(
     vault: &mut Vault<P, V>,
     position: StakePosition<P, V>,
@@ -807,33 +1124,8 @@ fun finalize_unstake<P, V>(
 ): (Coin<P>, Coin<V>, Coin<P>) {
     update_pools(vault, now);
 
-    // Settle pending — same as claim_rewards but inline because we need to
-    // unwrap position by value.
-    let entitlement1 =
-        (vault.pool1_victory.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
-    let entitlement2 =
-        (vault.pool2_suitrump.acc_reward_per_share * (position.weight as u128)) / ACC_PRECISION;
-    let pending1 = if (entitlement1 > position.reward_debt_pool1) {
-        ((entitlement1 - position.reward_debt_pool1) as u64)
-    } else { 0 };
-    let pending2 = if (entitlement2 > position.reward_debt_pool2) {
-        ((entitlement2 - position.reward_debt_pool2) as u64)
-    } else { 0 };
-    let bal1 = balance::value(&vault.pool1_victory.balance);
-    let bal2 = balance::value(&vault.pool2_suitrump.balance);
-    let payout1 = if (pending1 > bal1) bal1 else pending1;
-    let payout2 = if (pending2 > bal2) bal2 else pending2;
-
-    let reward_v = if (payout1 > 0) {
-        vault.pool1_victory.total_distributed = vault.pool1_victory.total_distributed + payout1;
-        coin::from_balance(balance::split(&mut vault.pool1_victory.balance, payout1), ctx)
-    } else { coin::zero<V>(ctx) };
-    let reward_p = if (payout2 > 0) {
-        vault.pool2_suitrump.total_distributed = vault.pool2_suitrump.total_distributed + payout2;
-        coin::from_balance(balance::split(&mut vault.pool2_suitrump.balance, payout2), ctx)
-    } else { coin::zero<P>(ctx) };
-
-    // Decompose position.
+    // Decompose position. We need weight + debts as locals to pass to
+    // pay_pending (the position is consumed by-value here, so &mut won't work).
     let StakePosition {
         id,
         owner,
@@ -842,13 +1134,23 @@ fun finalize_unstake<P, V>(
         lock_kind: _,
         lock_unlock_ms: _,
         stake_ms: _,
-        reward_debt_pool1: _,
-        reward_debt_pool2: _,
+        reward_debt_pool1,
+        reward_debt_pool2,
         converted: _,
     } = position;
 
     let pid_inner = object::uid_to_inner(&id);
     object::delete(id);
+
+    // Settle pending rewards — same math as settle_rewards. Updated debts are
+    // discarded since the position no longer exists.
+    let (reward_v, reward_p, payout1, payout2, _new_debt1, _new_debt2) = pay_pending(
+        vault,
+        weight,
+        reward_debt_pool1,
+        reward_debt_pool2,
+        ctx,
+    );
 
     vault.total_locked = vault.total_locked - principal_amount;
     vault.total_weight = vault.total_weight - weight;
@@ -911,18 +1213,30 @@ fun lock_duration_ms(lock_kind: u8): u64 {
     else 0
 }
 
-// Conservative lower-bound for unclaimed rewards in a campaign — used by
-// sweep_expired_campaign to avoid sweeping balance that's owed to stakers.
-// We keep a buffer = total_distributed_capacity - total_distributed where
-// distributed_capacity = initial_amount - effective_balance.
-fun estimated_unclaimed<T>(pool: &RewardPool<T>, _total_weight: u64): u64 {
+// Lower-bound on rewards that have been emitted (added to acc_reward_per_share)
+// but not yet claimed by stakers. Used by sweep_expired_campaign to keep the
+// owed-but-unclaimed portion in the pool so post-expiry claim_campaign calls
+// can still pay the residual.
+//
+// INVARIANT: 0 ≤ unclaimed_emitted_floor ≤ pool.balance.
+//
+// Reasoning: balance starts at initial_amount and decreases only via claims.
+// effective_balance starts at initial_amount and decreases only via emissions.
+// In the clean case `balance ≥ effective_balance` always holds and
+// `balance - effective_balance` = (initial - claims) - (initial - emissions)
+//                               = emissions - claims = unclaimed-emitted.
+//
+// Edge case: when `bal ≤ effective_balance` (no emissions have happened OR
+// rounding drift), we preserve the FULL balance — sweep takes 0. This is the
+// safest behavior because acc_reward_per_share may still be ahead of some
+// stakers' reward_debt, so unclaimed residual must remain pull-able. The
+// previous `total_distributed`-based guard was dropped: it fired past 50%
+// drain (wrong threshold) and short-circuited the floor to 0, draining
+// legitimate residual.
+fun unclaimed_emitted_floor<T>(pool: &RewardPool<T>): u64 {
     let bal = balance::value(&pool.balance);
-    let owed_floor = if (pool.total_distributed >= bal) 0
-        else if (bal > pool.effective_balance) {
-            // unclaimed ≤ bal - effective_balance (the portion already emitted)
-            bal - pool.effective_balance
-        } else { 0 };
-    owed_floor
+    if (bal > pool.effective_balance) bal - pool.effective_balance
+    else bal
 }
 
 // ── Read-only views ────────────────────────────────────────────────────────
