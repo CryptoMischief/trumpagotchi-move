@@ -118,6 +118,18 @@ public struct ListingRemoved has copy, drop {
     timestamp_ms: u64,
 }
 
+// Generic field-edit event for admin updates to a listing's metadata
+// fields (name, tier_gate, equipped_value, walrus_standalone). `field`
+// identifies which one changed; `old` / `new` are stringified for
+// uniformity across String / u8 fields.
+public struct ListingFieldUpdated has copy, drop {
+    sku: u64,
+    field: String,
+    old_value: String,
+    new_value: String,
+    timestamp_ms: u64,
+}
+
 public struct CosmeticPurchased has copy, drop {
     sku: u64,
     cosmetic_id: ID,
@@ -324,6 +336,105 @@ public fun admin_remove_listing(
     event::emit(ListingRemoved {
         sku, timestamp_ms: clock::timestamp_ms(clock),
     });
+}
+
+// ── Listing metadata edits ────────────────────────────────────────────────
+// Surgical field updates for an existing SKU. Use these to fix a typo or
+// rename without remove + re-add (which would leave a permanent SKU gap
+// and break correlations with already-issued cosmetic objects).
+
+public fun admin_set_equipped_value(
+    _admin: &AdminCap,
+    shop: &mut Shop,
+    sku: u64,
+    equipped_value: String,
+    clock: &Clock,
+) {
+    assert!(table::contains(&shop.listings, sku), ENoListing);
+    let l = table::borrow_mut(&mut shop.listings, sku);
+    let old = l.equipped_value;
+    l.equipped_value = equipped_value;
+    event::emit(ListingFieldUpdated {
+        sku,
+        field: b"equipped_value".to_string(),
+        old_value: old,
+        new_value: equipped_value,
+        timestamp_ms: clock::timestamp_ms(clock),
+    });
+}
+
+public fun admin_set_tier_gate(
+    _admin: &AdminCap,
+    shop: &mut Shop,
+    sku: u64,
+    tier_gate: u8,
+    clock: &Clock,
+) {
+    assert!(table::contains(&shop.listings, sku), ENoListing);
+    let l = table::borrow_mut(&mut shop.listings, sku);
+    let old = l.tier_gate;
+    l.tier_gate = tier_gate;
+    event::emit(ListingFieldUpdated {
+        sku,
+        field: b"tier_gate".to_string(),
+        old_value: u8_to_string(old),
+        new_value: u8_to_string(tier_gate),
+        timestamp_ms: clock::timestamp_ms(clock),
+    });
+}
+
+public fun admin_set_name(
+    _admin: &AdminCap,
+    shop: &mut Shop,
+    sku: u64,
+    name: String,
+    clock: &Clock,
+) {
+    assert!(table::contains(&shop.listings, sku), ENoListing);
+    let l = table::borrow_mut(&mut shop.listings, sku);
+    let old = l.name;
+    l.name = name;
+    event::emit(ListingFieldUpdated {
+        sku,
+        field: b"name".to_string(),
+        old_value: old,
+        new_value: name,
+        timestamp_ms: clock::timestamp_ms(clock),
+    });
+}
+
+public fun admin_set_walrus_standalone(
+    _admin: &AdminCap,
+    shop: &mut Shop,
+    sku: u64,
+    walrus_standalone: String,
+    clock: &Clock,
+) {
+    assert!(table::contains(&shop.listings, sku), ENoListing);
+    let l = table::borrow_mut(&mut shop.listings, sku);
+    let old = l.walrus_identifier_standalone;
+    l.walrus_identifier_standalone = walrus_standalone;
+    event::emit(ListingFieldUpdated {
+        sku,
+        field: b"walrus_standalone".to_string(),
+        old_value: old,
+        new_value: walrus_standalone,
+        timestamp_ms: clock::timestamp_ms(clock),
+    });
+}
+
+// Tiny helper to stringify a u8 for the unified ListingFieldUpdated event.
+fun u8_to_string(n: u8): String {
+    if (n == 0) return b"0".to_string();
+    let mut digits: vector<u8> = vector::empty();
+    let mut v = n;
+    while (v > 0) {
+        let d = v % 10;
+        vector::push_back(&mut digits, 48 + d);
+        v = v / 10;
+    };
+    vector::reverse(&mut digits);
+    std::string::utf8(digits)
 }
 
 public fun admin_set_addresses(

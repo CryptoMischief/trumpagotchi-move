@@ -384,3 +384,139 @@ fun test_add_invalid_kind_fails() {
     clock::destroy_for_testing(clk);
     sc.end();
 }
+
+// ── admin_set_* field-edit functions (v15 additions) ──────────────────────
+
+#[test]
+fun test_admin_set_equipped_value_changes_listing() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+    let sku = add_tuxedo(&mut sc, &clk, 5);
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_equipped_value(
+        &admin, &mut shop_obj, sku, string::utf8(b"VacationMode"), &clk,
+    );
+    let l = shop::listing(&shop_obj, sku);
+    assert!(shop::listing_equipped_value(&l) == string::utf8(b"VacationMode"), 0);
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+#[test]
+#[expected_failure(abort_code = shop::ENoListing)]
+fun test_admin_set_equipped_value_unknown_sku_fails() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_equipped_value(
+        &admin, &mut shop_obj, 999, string::utf8(b"X"), &clk,
+    );
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+#[test]
+fun test_admin_set_tier_gate_changes_listing() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+    let sku = add_tuxedo(&mut sc, &clk, 5);
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_tier_gate(&admin, &mut shop_obj, sku, 6, &clk);
+    let l = shop::listing(&shop_obj, sku);
+    assert!(shop::listing_tier_gate(&l) == 6, 0);
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+#[test]
+fun test_admin_set_name_changes_listing() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+    let sku = add_tuxedo(&mut sc, &clk, 5);
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_name(&admin, &mut shop_obj, sku, string::utf8(b"Premium Tuxedo"), &clk);
+    let l = shop::listing(&shop_obj, sku);
+    assert!(shop::listing_name(&l) == string::utf8(b"Premium Tuxedo"), 0);
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+#[test]
+fun test_admin_set_walrus_standalone_changes_listing() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+    let sku = add_tuxedo(&mut sc, &clk, 5);
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_walrus_standalone(
+        &admin, &mut shop_obj, sku, string::utf8(b"NEW_TUX.png"), &clk,
+    );
+    let l = shop::listing(&shop_obj, sku);
+    assert!(shop::listing_walrus_standalone(&l) == string::utf8(b"NEW_TUX.png"), 0);
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
+
+// Verifies the buy flow still respects the NEW equipped_value after an
+// admin edit — the cosmetic minted from the listing carries the updated
+// suffix, not the original.
+#[test]
+fun test_set_equipped_value_then_buy_uses_new_value() {
+    let mut sc = bootstrap();
+    let clk = clock::create_for_testing(sc.ctx());
+    let sku = add_tuxedo(&mut sc, &clk, 5);
+    set_tier(&mut sc, &clk, ALICE, 5);
+
+    sc.next_tx(ADMIN);
+    let admin = sc.take_from_sender<AdminCap>();
+    let mut shop_obj = sc.take_shared<Shop>();
+    shop::admin_set_equipped_value(
+        &admin, &mut shop_obj, sku, string::utf8(b"VacationMode"), &clk,
+    );
+    ts::return_shared(shop_obj);
+    sc.return_to_sender(admin);
+
+    sc.next_tx(ALICE);
+    let mut shop_obj = sc.take_shared<Shop>();
+    let tier_reg = sc.take_shared<TierRegistry>();
+    let pay = coin::mint_for_testing<SUI>(TUXEDO_PRICE, sc.ctx());
+    shop::buy_cosmetic(&mut shop_obj, &tier_reg, sku, pay, &clk, sc.ctx());
+    ts::return_shared(shop_obj);
+    ts::return_shared(tier_reg);
+
+    sc.next_tx(ALICE);
+    let cos = sc.take_from_sender<trumpagotchi::Cosmetic>();
+    assert!(trumpagotchi::cosmetic_equipped_value(&cos) == string::utf8(b"VacationMode"), 0);
+    sc.return_to_sender(cos);
+
+    clock::destroy_for_testing(clk);
+    sc.end();
+}
