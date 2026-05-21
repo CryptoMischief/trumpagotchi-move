@@ -5,10 +5,17 @@
   "publishDigest": "DcN4Q61PyyyLvfDKXgfcsmbhgq8aeBguUUSmSacqJQd",
   "publishedAt": "2026-05-07T11:00:00.000Z",
   "packageId": "0x4eefd834cc26269827d056e3e52bbaa896b7477d507d1d163e861492f2ec520c",
-  "packageIdLatest": "0x282c387f1e77129ead172b088e9e27c1acfbbe72c45f056ecb90c5c277edc955",
+  "packageIdLatest": "0xbf65e01cd387ca3257f8e4cdc94f8fad440414c6ef158d9ee0fb9c86113c7db1",
   "packageIdShopHome": "0x53434c64f5f8eff5b88b1bad66003046d698a3516a7464973c4a915ae90d7bbd",
   "packageIdSingleStakeHome": "0xf8f981bb7bf1b6b649ee9744adbfd603e352b5886a1422c7073135fa8a4f23a2",
-  "packageVersion": 13,
+  "packageIdXpRegistryHome": "0x89b55687ed7726cc6386d84a6c47b0e1c2cd01dcde552bda8dae655a6f096e2b",
+  "packageIdQuestPermitHome": "0xbf65e01cd387ca3257f8e4cdc94f8fad440414c6ef158d9ee0fb9c86113c7db1",
+  "packageVersion": 18,
+  "v18UpgradeNote": "v17 → v18 upgrade 2026-05-19 — Track B Quest Box (Ed25519 permit pattern, Enoki-style). New module `quest_permit`: shared KeyRegistry holds the 32-byte Ed25519 pubkey + used-nonce table. Engagement-api signs BCS-encoded CosmeticMintPermit off-chain; user submits a PTB with mint_cosmetic_from_permit(registry, signature, bcs_payload) which verifies the signature, consumes the nonce single-use, asserts sender == recipient, and mints a Cosmetic to caller via the existing public(package) issue_cosmetic. Admin surface: create_registry, admin_set_pubkey (key rotation), cleanup_nonces. Wire format peel order: address | u64 | u8 kind | u8 tier_gate | u8 rarity | vec<u8> name | vec<u8> walrus_id | vec<u8> equipped_value. 154/154 tests pass (12 new). Upgrade digest: 9H9p7MwXmVa8pSTaH8ZShrmNps7gARYfiET8vgxAs8CV. Previous packageIdLatest before v18: 0xfa1d2428094e4cad638bc8e5eb7fe0c0fca96d17e0a383b5633e7c1918e5f4dd.",
+  "v17UpgradeNote": "v16 → v17 upgrade 2026-05-13 — atomic one-signature meal box + rally. Added xp_registry::buy_meal_box_and_rally<T>(registry, payment: Coin<T>, clock, ctx). Bundles burn + meal_box_at_ms stamp + record_rally + add_xp(200) into a single user-signed PTB — no keeper round-trip. Same gates as buy_meal_box (type, amount, Gone Quiet, rally cooldown). Streak preservation logic identical: gap > streak_break is forgiven because meal_box was just stamped this same tx. XP_PER_RALLY hardcoded at 200 per spec §3.1 — changing requires another upgrade. 142/142 tests pass (5 new). Upgrade digest: 5VnSLHQwbPTFtov8gqY8VTJc4wFUKKPJpgSo3J6dgSyY. Previous packageIdLatest before v17: 0x3a5fefae1ca61962005a9aea39337dfae81af164e66a709b400be94506ba5926.",
+  "v16UpgradeNote": "v15 → v16 upgrade 2026-05-12 — McDonalds Meal Box on-chain user flow. Added `xp_registry::buy_meal_box<T>(registry, payment: Coin<T>, clock, ctx)`: type-checked via dynamic field MEAL_BOX_COIN_KEY (admin-rotatable), amount-checked (>= 5,000 SUITRUMP at 6 decimals = 5_000_000_000), Gone-Quiet-gated, burns the coin to @0x0, stamps meal_box_at_ms on buyer's XpEntry. Plus `admin_set_meal_box_coin<T>(admin, registry, clock)`, `meal_box_coin_type(registry) -> Option<TypeName>` view, `meal_box_price()` constant view. 2 new events MealBoxPurchased + MealBoxCoinTypeSet. Old `apply_meal_box` admin function retained for upgrade compat. Initialized on testnet to SUITRUMP type via admin_set_meal_box_coin one-shot. Upgrade digest: CXP1T8Kwt6y4wC5WJiSfdWb7ArQCycugBrxKCbirh4wA. Previous packageIdLatest before v16: 0xcdf7913b3f6770f66b8c9749d9700580773d5a7dfea1d83956e1fc782cc06457. 137/137 tests pass (11 new buy_meal_box tests).",
+  "v15UpgradeNote": "v14 → v15 upgrade 2026-05-12 — Shop listing field-edit functions. Added admin_set_equipped_value, admin_set_tier_gate, admin_set_name, admin_set_walrus_standalone to shop.move + the unified ListingFieldUpdated event. Lets the admin fix a typo or rename a SKU in-place instead of remove + re-add (which would orphan SKUs and break already-issued cosmetics). Unblocks scripts/sync_shop.ts (idempotent shop manager). 127/127 tests pass. Upgrade digest: BseG5sC4jjtkGwQCPyCdZ1FNPA3c9GYPsKcsnuJ4tE6D. Previous packageIdLatest before v15: 0x89b55687ed7726cc6386d84a6c47b0e1c2cd01dcde552bda8dae655a6f096e2b.",
+  "v14UpgradeNote": "v13 → v14 upgrade 2026-05-11 — Track B engagement layer foundation. Added new module `xp_registry` (Phase 2 v2 spec §3 + §4): shared XpRegistry keyed by wallet address, 7-field XpEntry (xp, streak, longest_streak, last_rally_ms, total_rallies, meal_box_at_ms, created_at_ms), admin-gated mutations (add_xp, batch_add_xp, set_xp, record_rally, set_streak, apply_meal_box, set_config), 4 events (XpAwarded, RallyRecorded, StreakSet, MealBoxConsumed) + XpRegistryCreated. Reuses trumpagotchi::AdminCap — no new admin surface. XpRegistry shared object created post-upgrade via create_registry (init does not auto-run on upgrades — matches shop.move pattern). 24 new tests added (121/121 project total). Previous packageIdLatest before v14: 0x282c387f1e77129ead172b088e9e27c1acfbbe72c45f056ecb90c5c277edc955.",
   "v13UpgradeNote": "v12 → v13 upgrade 2026-05-11 — AUDIT COMMISSION BUILD. (1) Reverted v12 fast-test durations: canonical LOCK_30D_MS=2_592_000_000, LOCK_90D_MS=7_776_000_000, LOCK_180D_MS=15_552_000_000, DISTRIBUTION_WINDOW_MS=7_776_000_000. (2) Added recover_stranded_residual<P, V, T> admin entry point to close the F14 + unstake-without-bundle leakage hole: when stakers unstake before their bundle includes claim_campaign for a campaign, the position's accrued share becomes permanently owed to no one (F14 preserves it; F15 prevents future positions from claiming). After 30-day RECOVERY_GRACE_MS post-expiry, admin can reclaim. Requires campaign.finalized=true (sweep must run first). Three new regression tests (test_recover_stranded_residual_after_grace + test_recover_stranded_aborts_before_grace + test_recover_stranded_aborts_when_not_finalized). 96/96 tests pass. THIS IS THE FINAL AUDIT COMMISSION BUILD.",
   "v12UpgradeNote": "v11 → v12 upgrade 2026-05-11 — FAST-TEST build. 3/9/18-min locks + 9-min window. End-to-end production-scale test (200M SUITRUMP + 3M VICTORY pools, partner campaign at T+1:30, multi-position unstake). Test exposed F14+unstake-bundle leakage (155.73 COFFEE stranded) → motivated v13's recover_stranded_residual. Previous packageIdLatest before v13: 0xf8c92dc43a37bd06d0c075680a1ea89202bd7961f51fc0d6e7bd963d83fff6ff.",
   "v11UpgradeNote": "v10 → v11 upgrade 2026-05-11 — POOL 3 LINEAR RELEASE. Partner campaigns emit at constant rate = initial / duration. Superseded by v13.",
@@ -59,6 +66,15 @@
   "upgradeCap": "0xfb8ac6193adff6a0c90cf6f9b4660151a0415ec7b3c6b72e1af8dcf540593948",
   "publisher": "0xf4b3b130743dc6d692aabee108c9778a0872ae30296dd098e9dc713e09543437",
   "adminCap": "0xcadf5675eb658894a115c074a66d5dbce1088a61c9a22fed843521e7f1d6b6e2",
+  "questPermitKeyRegistry": {
+    "objectId": "0x465d868e3a00729d0960a9cde20b28e34f6c608f176714faa5bbe1bb49087aa1",
+    "type": "0xbf65e01cd387ca3257f8e4cdc94f8fad440414c6ef158d9ee0fb9c86113c7db1::quest_permit::KeyRegistry",
+    "createDigest": "8Smmy8Y4D5VzPwsvpfW2NcNngH8qfuW82mRweWqsL5mQ",
+    "setPubkeyDigest": "EWyCWwVMucocfdnJBLVHhFGpf4C6UKGXgihx8ydSHVLN",
+    "pubkey": "0x723c4c6fa48d886621977af8c83edcba4e6a50af86b3fbf22f6925ad871712f4",
+    "pubkeyWallet": "0xa80e6953e6c4389d0d58461e911418c89568aa3245dbf4b6c32dfa05d09579f1",
+    "note": "Shared object for Track B Quest Box (v18). Holds the Ed25519 pubkey engagement-api signs CosmeticMintPermit payloads with, plus the used-nonce table for single-use replay protection. Pubkey is the trumpagotchi-testnet deployer wallet's Ed25519 key (shared with xp-keeper / identity-engine — user direction: one wallet across all testnet during build phase, rotate to dedicated permit key pre-mainnet)."
+  },
   "displayTrumpagotchi": "0x30703fd2dac93e162c026f1e294c110b92c19808a6c34f1d77aea06b7842f87f",
   "displayCosmetic": "0x58813690cf8ce5296ce07a29f93688b8d022c53e1e4f32e135a54959069f11d3",
   "mintConfig": "0x5b2ddad2fa890a546734999ed0c34220f30c9af0a1fa0e2d03c2af159c6773ac",
@@ -87,40 +103,68 @@
     "canonicalStepCount": 25,
     "canonicalCapMist": 80000000000
   },
+  "xpRegistry": {
+    "objectId": "0x5d9c6b65f4de458d470823a5161f28e7e3fc51a547e9a4eb17f509f1a00fe3ff",
+    "type": "0x89b55687ed7726cc6386d84a6c47b0e1c2cd01dcde552bda8dae655a6f096e2b::xp_registry::XpRegistry",
+    "createdAt": "2026-05-11T17:59:36.000Z",
+    "createDigest": "6XtTuGkhSoifWziZzx8AsSa7m5ec32Kc6KCgVrkV2dyS",
+    "upgradeDigest": "HQqijYSRJH36A6qfcQr7bK2tYGxsR8q8UhFb2FLBmfFi",
+    "initialSharedVersion": 859493537,
+    "defaultConfig": {
+      "rally_window_ms": 86400000,
+      "streak_break_ms": 172800000,
+      "losing_steam_threshold_ms": 86400000,
+      "gone_quiet_threshold_ms": 345600000
+    },
+    "mealBoxCoinType": "0x81a80ccd9b9de260d43521e8c8ea0e4f907a3d7a6eb223621c1dcad7e4fec6a9::suitrump::SUITRUMP",
+    "mealBoxPrice": 5000000000,
+    "mealBoxPriceTokens": 5000,
+    "mealBoxInitializedAt": "2026-05-12T15:00:00.000Z",
+    "note": "xp_registry module added via v14 package upgrade 2026-05-11. XpRegistry shared object created post-upgrade by admin call to create_registry. Module emits XpRegistryCreated, XpAwarded, RallyRecorded, StreakSet, MealBoxConsumed, MealBoxPurchased (v16+), MealBoxCoinTypeSet (v16+), XpRegistryConfigUpdated events. AdminCap-gated for admin paths; buy_meal_box is user-signed (v16+). Admin wallet is the deployer (0xa80e69…). Defaults from Phase 2 v2 spec §3/§4: 24h rally window, 48h streak break, 24h-since-rally → Losing Steam, 96h+ → Gone Quiet. Meal box coin type set to testnet SUITRUMP via admin_set_meal_box_coin one-shot post-v16; rotate for mainnet."
+  },
   "walrus": {
     "network": "testnet",
     "stripQuilt": {
-      "blobId": "GQyVte3zQh_C5cMagHHs2ItGCxCdYo_qtGInoRcMzUQ",
-      "suiObjectId": "0xc4fb6cb3664b048e071fe61cd3501cefcf70f888acf85790aff817ceb8708d87",
-      "endEpoch": 443,
-      "uploadedAt": "2026-05-07T11:30:00.000Z",
-      "purpose": "4096x256 sprite strips + JSON sidecars + raw backgrounds. Used by the dapp's browser compositor. Re-pinned 2026-05-07 with cleaned source PNGs (white-fringe artifacts removed).",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/GQyVte3zQh_C5cMagHHs2ItGCxCdYo_qtGInoRcMzUQ/{identifier}",
+      "blobId": "2s6uvJXo6BgZwUEeCrie3tOPEYl_i2LeGS-KnQRceO8",
+      "suiObjectId": "0x6776a6eeda15b15d1dc5c7c1ba326c3696b5e4dc8f0354806a6b9dc01a554555",
+      "endEpoch": 448,
+      "uploadedAt": "2026-05-12T08:30:00.000Z",
+      "purpose": "4096x256 sprite strips + JSON sidecars + raw backgrounds. Re-pinned 2026-05-12 to normalize MAGAHat naming — T11/T13 files were inconsistently `-MAGA.png` while T12 was `-MAGAHat.png`. Now consistent `-MAGAHat.png` across all 3 eligible tiers. Spend: 0.027 WAL.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/2s6uvJXo6BgZwUEeCrie3tOPEYl_i2LeGS-KnQRceO8/{identifier}",
       "supersededAssets": [
-        { "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk", "purpose": "Original strip quilt from un-cleaned source PNGs", "supersededAt": "2026-05-07T11:30:00.000Z" }
+        { "blobId": "SxVcAZk4JymAxK0fl7IK4262mQlvwN_Zl7dh1IW6MWk", "purpose": "Original strip quilt from un-cleaned source PNGs", "supersededAt": "2026-05-07T11:30:00.000Z" },
+        { "blobId": "GQyVte3zQh_C5cMagHHs2ItGCxCdYo_qtGInoRcMzUQ", "purpose": "Strip quilt with inconsistent filenames (Blue Collar w/ space, Big League w/ space, Macdonalds, MarALago without hyphens). Caused broken Vacation / BlueCollar / Mar-A-Lago / McDonald's equip cases. Superseded by normalized re-pin.", "supersededAt": "2026-05-12T06:34:29.000Z" },
+        { "blobId": "xE6zf4uZ_U6-q-uaBpgxBdjOLwn95czAIfTahSjAmbg", "purpose": "Strip quilt with MAGA/MAGAHat inconsistency across T11/T12/T13. Superseded by all-MAGAHat normalized re-pin.", "supersededAt": "2026-05-12T08:30:00.000Z" }
       ]
     },
     "animatedQuilt": {
-      "blobId": "hoyf58e_3c8lPAXnQVLwfSs7jmEx-cxNEtsZ-gi1FRY",
-      "suiObjectId": "0x3c7ddc2ec2ec4da58ed1d07b9b656a7b89f31c2ba70de18f201510f530b87a88",
-      "endEpoch": 443,
-      "uploadedAt": "2026-05-07T14:45:00.000Z",
+      "blobId": "L9T0XICltePCfdwdQrFsyZ-MDHz0hIwuONfYMk4tWA4",
+      "suiObjectId": "0x7b63518c7de1aeb70b361b25508d30e346eac906097758c4afd8903a88557e1e",
+      "endEpoch": 448,
+      "uploadedAt": "2026-05-12T08:30:00.000Z",
       "patchCount": 146,
-      "purpose": "APNG (animated PNG) per body variant — body composited onto Black Stars at 24-bit color. On-chain Display.image_url for Trumpagotchi NFT (9th deployment) routes through the server endpoint which proxies these patches. Switched from GIF on 2026-05-07 because GIF's 256-color per-frame palette was dropping the red on the tie + flickering on Suivision/Slush.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/hoyf58e_3c8lPAXnQVLwfSs7jmEx-cxNEtsZ-gi1FRY/{body_identifier}-animated.png",
+      "purpose": "APNG (animated PNG) per body variant — body composited onto Black Stars at 24-bit color. Re-pinned 2026-05-12 to normalize MAGAHat (T11/T13 were `-MAGA-animated.png`, T12 was `-MAGAHat-animated.png` — now all consistent `-MAGAHat-animated.png`). Spend: 0.041 WAL.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/L9T0XICltePCfdwdQrFsyZ-MDHz0hIwuONfYMk4tWA4/{body_identifier}-animated.png",
       "serverRouteTemplate": "https://dev-suitrump.vercel.app/api/trumpagotchi-render/{id}.png",
       "displayFlippedAt": "2026-05-07T14:48:00.000Z (display::edit + update_version, .gif -> .png template)",
       "supersededAssets": [
-        { "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc", "purpose": "GIF version of cleaned animated quilt; replaced by APNG for full-color tie + smooth animation", "supersededAt": "2026-05-07T14:48:00.000Z" }
+        { "blobId": "au0pTSIy0w3OBqvpKJYJvICmaCAcoVqrBXeQLIEDbRc", "purpose": "GIF version of cleaned animated quilt; replaced by APNG for full-color tie + smooth animation", "supersededAt": "2026-05-07T14:48:00.000Z" },
+        { "blobId": "hoyf58e_3c8lPAXnQVLwfSs7jmEx-cxNEtsZ-gi1FRY", "purpose": "APNG quilt with 12 missing patches (Tier5/8 base bodies among them) + 7 inconsistently-named files (Blue Collar w/ space etc.). Superseded by complete normalized re-pin.", "supersededAt": "2026-05-12T06:55:56.000Z" },
+        { "blobId": "010ymcIHekzyF_9U--oF9VTgiM-GzUBuNqHnZ8AjgRw", "purpose": "APNG quilt with MAGA/MAGAHat inconsistency. Superseded by all-MAGAHat normalized re-pin.", "supersededAt": "2026-05-12T08:30:00.000Z" }
       ]
     },
     "cosmeticStandalonesQuilt": {
-      "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM",
-      "endEpoch": 442,
+      "blobId": "gkEhRCAj-GcsKX_z2_pDW7GbFQpIv7x3aUSvGYjtSsw",
+      "suiObjectId": "0x6004c557fcb49cbc5ebbbceaf1f3c46314a6cbe760d87da522773a745e8e9dbf",
+      "endEpoch": 448,
+      "uploadedAt": "2026-05-12T07:15:05.000Z",
       "patchCount": 78,
-      "purpose": "Combined cosmetic-side standalone quilt: 19 outfit paper-dolls + 59 backgrounds. Display.image_url for any Cosmetic kind resolves through here.",
-      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM/{walrus_identifier_standalone}",
-      "outfitIdentifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"]
+      "purpose": "Combined cosmetic-side standalone quilt: 19 outfit paper-dolls + 59 backgrounds. The Cosmetic struct's walrus_identifier_standalone field resolves here. Re-pinned 2026-05-12 with `McDonalds.png` (renamed from `Macdonalds.png`) to align with the strip quilt naming convention. Old quilt mRWwGYSS… superseded.",
+      "aggregatorUrlTemplate": "https://aggregator.walrus-testnet.walrus.space/v1/blobs/by-quilt-id/gkEhRCAj-GcsKX_z2_pDW7GbFQpIv7x3aUSvGYjtSsw/{walrus_identifier_standalone}",
+      "outfitIdentifiers": ["ASTRONAUT.png","BILLIONAIRE.png","BLUECOLLAR.png","BOXERSHORTS.png","COWBOY.png","EAGLE.png","GARBAGEMAN.png","GENERAL.png","GOLD.png","GOLDEAGLE.png","GOLF.png","HOTPINK.png","MAGAHAT.png","PHONE.png","RALLY.png","SUITRUMP_SUIT.png","TRACKSUIT.png","TUXEDO.png","VACATION.png"],
+      "supersededAssets": [
+        { "blobId": "mRWwGYSSeTpmJSzsmcAxUMp8jh1ZCT_0FiX8Xc5-QxM", "purpose": "Standalones quilt with `Macdonalds.png` (lowercase d). Caused broken icon for the McDonald's cosmetic after the strip-quilt rename to `McDonalds.png`.", "supersededAt": "2026-05-12T07:15:05.000Z" }
+      ]
     }
   },
   "mintAddresses": {

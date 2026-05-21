@@ -1,0 +1,20 @@
+{
+  "name": "trumpagotchi-move-scripts",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Admin / deployment scripts for the trumpagotchi Move package. Move sources + tests live in sources/ + tests/; scripts/ is for one-off TS tooling (shop seed, sync, asset validation).",
+  "type": "module",
+  "scripts": {
+    "validate:shop": "tsx scripts/validate_shop.ts",
+    "sync:shop": "tsx scripts/sync_shop.ts",
+    "sync:shop:dry": "tsx scripts/sync_shop.ts --dry-run"
+  },
+  "dependencies": {
+    "@mysten/sui": "^2.14.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}
